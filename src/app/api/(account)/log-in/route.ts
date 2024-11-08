@@ -33,8 +33,8 @@ export async function POST(request: Request) {
 
     const user: User = { id: account.id }
     const options: SignOptions = { expiresIn: '1h'}
-    const secret_key = process.env.JWT_KEY
-    const token = jwt.sign(user, secret_key, options)
+    const secretKey = process.env.JWT_KEY
+    const token = jwt.sign(user, secretKey, options)
 
     return Response.json( { token })
 }
