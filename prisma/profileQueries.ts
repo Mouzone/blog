@@ -8,3 +8,22 @@ export function findByUsername(username: string) {
         }
     })
 }
+
+export function findByEmail(email: string) {
+    return prisma.profile.findUnique({
+        where: {
+            email,
+        }
+    })
+}
+
+export function createProfile(username: string, email: string, password: string, isAuthor?: boolean) {
+    return prisma.profile.create({
+        data: {
+            username,
+            email,
+            password,
+            isAuthor,
+        }
+    })
+}
