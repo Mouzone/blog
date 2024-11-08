@@ -25,9 +25,9 @@ export async function POST(request: Request) {
 
     if (!account || account.password !== password) {
         return Response.json({
-            "error": true,
-            "message": "Invalid username or password",
-            "status": 401,
+            error: true,
+            message: "Invalid username or password",
+            status: 401,
         })
     }
 
