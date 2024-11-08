@@ -1,14 +1,27 @@
 import { findByUsername } from "../../../../../prisma/profileQueries"
 import * as dotenv from "dotenv"
-import jwt, { SignOptions } from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken'
+
 dotenv.config()
+
+interface Account {
+    id: number,
+    email: string,
+    username: string,
+    password: string,
+    isAuthor: boolean
+}
+
+interface User {
+    id: number,
+}
 
 export async function POST(request: Request) {
     const formData = await request.formData()
     const username = formData.get("username")
     const password = formData.get("password")
 
-    const account = await findByUsername(username as string)
+    const account: Account | null = await findByUsername(username)
 
     if (!account || account.password !== password) {
         return Response.json({
@@ -18,9 +31,10 @@ export async function POST(request: Request) {
         })
     }
 
-    const user = { id: account.id }
+    const user: User = { id: account.id }
     const options: SignOptions = { expiresIn: '1h'}
-    const token = jwt.sign(user, process.env.JWT_KEY as string, options)
+    const secret_key = process.env.JWT_KEY
+    const token = jwt.sign(user, secret_key, options)
 
     return Response.json( { token })
 }
