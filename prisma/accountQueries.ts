@@ -10,3 +10,11 @@ export function createAccount(username: string, email: string, password: string)
         }
     })
 }
+
+export function findAccount(username: string) {
+    return prisma.profile.findUnique({
+        where:{
+            username
+        }
+    })
+}
