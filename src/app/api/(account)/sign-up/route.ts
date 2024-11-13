@@ -7,12 +7,16 @@ export async function POST(request: Request) {
     const password = body.password
 
     try {
-        await createAccount(username, email, password)
+        const bcryptHash = await Bun.password.hash(password, {
+            algorithm: "bcrypt",
+            cost: 10
+        })
+        await createAccount(username, email, bcryptHash)
     } catch(error) {
         return Response.json({
             error: true,
             status: 503,
-            message: error,
+            message: `Error creating account ${error}`,
         })
     }
 
