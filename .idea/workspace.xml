@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="359a950b-b448-4557-8c28-ca4a78b7098c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/prisma/postQueries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/accountQueries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/profileQueries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/posts/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/posts/route.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +176,10 @@
       <workItem from="1731020632218" duration="3615000" />
       <workItem from="1731079950492" duration="11352000" />
       <workItem from="1731518370617" duration="7596000" />
-      <workItem from="1731538848818" duration="475000" />
+      <workItem from="1731538848818" duration="849000" />
+      <workItem from="1731540229646" duration="65000" />
+      <workItem from="1731540311300" duration="218000" />
+      <workItem from="1731540617917" duration="27000" />
     </task>
     <servers />
   </component>
