@@ -11,10 +11,18 @@ export function createAccount(username: string, email: string, password: string)
     })
 }
 
-export function findAccount(username: string) {
+export function findAccountByUsername(username: string) {
     return prisma.profile.findUnique({
         where:{
             username
+        }
+    })
+}
+
+export function findAccountByEmail(email: string) {
+    return prisma.profile.findUnique({
+        where: {
+            email
         }
     })
 }

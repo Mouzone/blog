@@ -1,28 +1,86 @@
-import { createAccount } from "../../../../../prisma/accountQueries";
+import { createAccount, findAccountByUsername, findAccountByEmail } from "../../../../../prisma/accountQueries";
+import { z } from 'zod'
 
-export async function POST(request: Request) {
-    const body = await request.json()
-    const username = body.username
-    const email = body.email
-    const password = body.password
+const RegisterSchema = z.object({
+    username: z.string().min(3).max(30),
+    email: z.string().email(),
+    password: z.string().min(8)
+})
 
+interface RegisterResponse {
+    error: boolean
+    status: number
+    message: string
+}
+
+export async function POST(request: Request): Promise<Response> {
     try {
-        const bcryptHash = await Bun.password.hash(password, {
+        const body = await request.json()
+
+        // Optional: Validate input
+        const result = RegisterSchema.safeParse(body)
+        if (!result.success) {
+            return Response.json({
+                error: true,
+                status: 400,
+                message: 'Invalid input data'
+            })
+        }
+
+        const { username, email, password } = body
+
+        // Check if username or email already exists
+        const existingUsername = await findAccountByUsername(username)
+        if (existingUsername) {
+            return Response.json({
+                error: true,
+                status: 409, // Conflict
+                message: 'Username already exists'
+            })
+        }
+
+        const existingEmail = await findAccountByEmail(email)
+        if (existingEmail) {
+            return Response.json({
+                error: true,
+                status: 409, // Conflict
+                message: 'Email already exists'
+            })
+        }
+
+        // Hash password
+        const passwordHash = await Bun.password.hash(password, {
             algorithm: "bcrypt",
             cost: 10
         })
-        await createAccount(username, email, bcryptHash)
-    } catch(error) {
+
+        // Create account
+        await createAccount(username, email, passwordHash)
+
+        return Response.json({
+            error: false,
+            status: 201, // Created
+            message: "Account created successfully",
+        } satisfies RegisterResponse)
+
+    } catch (error) {
+        console.error('Registration error:', error)
+
+        // Check for specific error types
+        if (error instanceof z.ZodError) {
+            return Response.json({
+                error: true,
+                status: 400,
+                message: 'Invalid input data',
+                details: error.errors
+            })
+        }
+
+        // Generic error response
         return Response.json({
             error: true,
-            status: 503,
-            message: `Error creating account ${error}`,
-        })
+            status: 500,
+            message: 'Internal server error'
+        } satisfies RegisterResponse)
     }
-
-    return Response.json({
-        error: false,
-        status: 200,
-        message: "success"
-    })
 }
