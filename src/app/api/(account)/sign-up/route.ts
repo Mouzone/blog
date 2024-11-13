@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { createProfile, findProfileByUsername, findProfileByEmail } from "../../../../../prisma/profileQueries";
+=======
+import { createAccount, findAccountByUsername, findAccountByEmail } from "../../../../../prisma/accountQueries";
+>>>>>>> f054e6069bc7470000590410056967d3c53bc794
 import { z } from 'zod'
 
 const RegisterSchema = z.object({
@@ -30,7 +34,11 @@ export async function POST(request: Request): Promise<Response> {
         const { username, email, password } = body
 
         // Check if username or email already exists
+<<<<<<< HEAD
         const existingUsername = await findProfileByUsername(username)
+=======
+        const existingUsername = await findAccountByUsername(username)
+>>>>>>> f054e6069bc7470000590410056967d3c53bc794
         if (existingUsername) {
             return Response.json({
                 error: true,
@@ -39,7 +47,11 @@ export async function POST(request: Request): Promise<Response> {
             })
         }
 
+<<<<<<< HEAD
         const existingEmail = await findProfileByEmail(email)
+=======
+        const existingEmail = await findAccountByEmail(email)
+>>>>>>> f054e6069bc7470000590410056967d3c53bc794
         if (existingEmail) {
             return Response.json({
                 error: true,
@@ -55,7 +67,11 @@ export async function POST(request: Request): Promise<Response> {
         })
 
         // Create account
+<<<<<<< HEAD
         await createProfile(username, email, passwordHash)
+=======
+        await createAccount(username, email, passwordHash)
+>>>>>>> f054e6069bc7470000590410056967d3c53bc794
 
         return Response.json({
             error: false,
