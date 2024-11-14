@@ -18,3 +18,11 @@ export function findPosts(profileId: number) {
         }
     })
 }
+
+export function findPost(id: number) {
+    return prisma.post.findUnique({
+        where: {
+            id
+        }
+    })
+}
