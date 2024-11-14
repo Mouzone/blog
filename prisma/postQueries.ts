@@ -27,17 +27,6 @@ export function findPost(id: number) {
     })
 }
 
-export function findPostWithComments(id: number) {
-    return prisma.post.findUnique({
-        where: {
-            id
-        },
-        include: {
-            comments: true
-        }
-    })
-}
-
 export function updatePost(id: number, title: string, content: string) {
     return prisma.post.update({
         where: {
