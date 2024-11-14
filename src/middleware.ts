@@ -1,31 +1,42 @@
-import { NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
 import jwt, {type Secret} from "jsonwebtoken"
 
 export const config = {
-    matcher: ['/comments/:path', "/posts/:path"],
+    matcher: ['/api/comments', '/api/posts', '/api/comments/:path*', "/api/posts/:path*"],
 }
 
-export async function middleware() {
+interface JwtPayload {
+    id: string,
+}
+
+export async function middleware(request: NextRequest) {
     const headersList = await headers()
-    const bearerHeader = headersList.get("authentication")
+    const bearerHeader = headersList.get("authorization")
+
     if (typeof bearerHeader !== 'undefined' && bearerHeader) {
         const bearer = bearerHeader.split(' ')
         const bearerToken = bearer[1]
 
         const secret: Secret = process.env["JWT_KEY"] as Secret
-        jwt.verify(bearerToken, secret, (err, authData) => {
-            if (err) {
-                NextResponse.json({
-                    error: true,
-                    status: 403,
-                    message: "Invalid token"
-                })
-            }
-            const response =  NextResponse.next()
-            response.headers.set("id", authData)
-            return response
-        })
+        try {
+            const decoded = jwt.verify(bearerToken, secret) as JwtPayload
+            const requestHeaders = new Headers(request.headers)
+            requestHeaders.set('id', decoded.id)
+
+            return NextResponse.next({
+                request: {
+                    headers: requestHeaders,
+                },
+            })
+
+        } catch(error) {
+            return NextResponse.json({
+                error: true,
+                status: 403,
+                message: `Cannot verify token ${error}`
+            })
+        }
     } else {
         NextResponse.redirect('/log-in')
     }
