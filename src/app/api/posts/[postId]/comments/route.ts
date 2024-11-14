@@ -1,7 +1,19 @@
 import {headers} from "next/headers";
-import {findPostWithComments} from "../../../../../../prisma/postQueries.ts";
+import {createComment, findComments} from "../../../../../../prisma/commentQueries.ts";
 
 export async function GET({ params }: { params: Promise<{ postId: string }> }) {
+    const postId = (await params).postId
+    const comments = await findComments(parseInt(postId))
+
+    return Response.json({
+        error: false,
+        status: 200,
+        comments,
+        message: "success"
+    })
+}
+
+export async function POST(request: Request, { params }: { params: Promise<{ postId: string }> }) {
     const headersList = await headers()
     const id = headersList.get("id")
 
@@ -12,14 +24,9 @@ export async function GET({ params }: { params: Promise<{ postId: string }> }) {
             message: "Authentication Error"
         })
     }
-
+    
     const postId = (await params).postId
-    const comments = await findPostWithComments(parseInt(postId))
+    const { content }= await request.json()
 
-    return Response.json({
-        error: false,
-        status: 200,
-        comments,
-        message: "success"
-    })
+    await createComment(parseInt(id), parseInt(postId), content)
 }
