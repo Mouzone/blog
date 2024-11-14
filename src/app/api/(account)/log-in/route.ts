@@ -1,12 +1,13 @@
 import { findProfileByUsername } from "../../../../../prisma/profileQueries.ts";
+import jwt, {type Secret} from "jsonwebtoken"
 
 export async function POST(request: Request) {
     try {
         const body = await request.json()
         const { username, password } = body
 
-        const account = await findProfileByUsername(username)
-        if (!account) {
+        const profile = await findProfileByUsername(username)
+        if (!profile) {
             return Response.json({
                 error: true,
                 status: 404,
@@ -14,7 +15,7 @@ export async function POST(request: Request) {
             })
         }
 
-        const isMatch = await Bun.password.verify(password, account.password)
+        const isMatch = await Bun.password.verify(password, profile.password)
         if (!isMatch) {
             return Response.json({
                 error: true,
@@ -23,11 +24,22 @@ export async function POST(request: Request) {
             })
         }
 
-        return Response.json({
-            error: false,
-            status: 200,
-            message: 'success',
-        })
+        try {
+            const secret: Secret = process.env["JWT_KEY"] as Secret
+            const token = jwt.sign({ id: profile.id }, secret, { expiresIn: '1h' })
+            return Response.json({
+                error: false,
+                status: 200,
+                token,
+                message: "success"
+            })
+        } catch(error) {
+            return Response.json({
+                error: true,
+                status: 503,
+                message: `Error generating token ${error}`
+            })
+        }
 
     } catch (error) {
         console.error('Login error:', error)
