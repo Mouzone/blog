@@ -1,19 +1,11 @@
-<<<<<<< HEAD
 import { findProfileByUsername } from "../../../../../prisma/profileQueries.ts";
-=======
-import { findAccountByUsername } from "../../../../../prisma/accountQueries.ts";
->>>>>>> f054e6069bc7470000590410056967d3c53bc794
 
 export async function POST(request: Request) {
     try {
         const body = await request.json()
         const { username, password } = body
 
-<<<<<<< HEAD
         const account = await findProfileByUsername(username)
-=======
-        const account = await findAccountByUsername(username)
->>>>>>> f054e6069bc7470000590410056967d3c53bc794
         if (!account) {
             return Response.json({
                 error: true,
