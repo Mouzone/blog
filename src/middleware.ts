@@ -1,13 +1,12 @@
 import {NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
-import jwt, {type Secret} from "jsonwebtoken"
 import {type JWTPayload, jwtVerify} from "jose";
 
 export const config = {
     matcher: ['/api/comments', '/api/posts', '/api/comments/:path*', "/api/posts/:path*"],
 }
 
-interface payload extends JWTPayload {
+interface Payload extends JWTPayload {
     id: string,
 }
 
@@ -20,10 +19,10 @@ export async function middleware(request: NextRequest) {
         const bearerToken = bearer[1]
 
         try {
-            const { payload } = await  jwtVerify(
+            const { payload} = await  jwtVerify(
                 bearerToken,
                 new TextEncoder().encode(process.env["JWT_KEY"])
-            )
+            ) as { payload: Payload }
             const requestHeaders = new Headers(request.headers)
             requestHeaders.set('id', payload.id)
 
