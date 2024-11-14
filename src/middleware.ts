@@ -3,7 +3,9 @@ import {headers} from "next/headers";
 import {type JWTPayload, jwtVerify} from "jose";
 
 export const config = {
-    matcher: ['/api/comments', '/api/posts', '/api/comments/:path*', "/api/posts/:path*"],
+    matcher: [
+        "/api/posts/:path*",
+    ],
 }
 
 interface Payload extends JWTPayload {
