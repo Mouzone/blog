@@ -1,14 +1,25 @@
 import {headers} from "next/headers";
+import {findPosts} from "../../../../prisma/postQueries.ts";
 
 export async function GET(){
     const headersList = await headers()
+    const id = headersList.get("id")
 
-    return Response.json(
-        {
-            id: headersList.get("id"),
-            deez: headersList.get("deez")
-        }
-    )
+    if (!id || isNaN(parseInt(id))) {
+        return Response.json({
+            error: true,
+            status: 503,
+            message: "Authentication Error"
+        })
+    }
+
+    const posts = await findPosts(parseInt(id))
+    return Response.json({
+        error: false,
+        status: 200,
+        posts,
+        message: "success"
+    })
 }
 
 export async function POST() {
