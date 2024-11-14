@@ -1,5 +1,5 @@
 import { findProfileByUsername } from "../../../../../prisma/profileQueries.ts";
-import jwt, {type Secret} from "jsonwebtoken"
+import { getToken } from "../../../../../utility/getToken.ts";
 
 export async function POST(request: Request) {
     try {
@@ -25,12 +25,14 @@ export async function POST(request: Request) {
         }
 
         try {
-            const secret: Secret = process.env["JWT_KEY"] as Secret
-            const token = jwt.sign({ id: profile.id }, secret, { expiresIn: '1h' })
+            const accessToken = await getToken({ id: profile.id }, "1h")
+            const refreshToken = await getToken( {id: profile.id})
+
             return Response.json({
                 error: false,
                 status: 200,
-                token,
+                accessToken,
+                refreshToken,
                 message: "success"
             })
         } catch(error) {

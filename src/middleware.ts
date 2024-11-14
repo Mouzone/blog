@@ -1,12 +1,13 @@
 import {NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
 import jwt, {type Secret} from "jsonwebtoken"
+import {type JWTPayload, jwtVerify} from "jose";
 
 export const config = {
     matcher: ['/api/comments', '/api/posts', '/api/comments/:path*', "/api/posts/:path*"],
 }
 
-interface JwtPayload {
+interface payload extends JWTPayload {
     id: string,
 }
 
@@ -18,11 +19,13 @@ export async function middleware(request: NextRequest) {
         const bearer = bearerHeader.split(' ')
         const bearerToken = bearer[1]
 
-        const secret: Secret = process.env["JWT_KEY"] as Secret
         try {
-            const decoded = jwt.verify(bearerToken, secret) as JwtPayload
+            const { payload } = await  jwtVerify(
+                bearerToken,
+                new TextEncoder().encode(process.env["JWT_KEY"])
+            )
             const requestHeaders = new Headers(request.headers)
-            requestHeaders.set('id', decoded.id)
+            requestHeaders.set('id', payload.id)
 
             return NextResponse.next({
                 request: {
@@ -38,6 +41,10 @@ export async function middleware(request: NextRequest) {
             })
         }
     } else {
-        NextResponse.redirect('/log-in')
+        return NextResponse.json({
+            error: true,
+            status: 401,
+            message: "Not authorized"
+        })
     }
 }
