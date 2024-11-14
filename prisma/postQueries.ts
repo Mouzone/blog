@@ -27,14 +27,24 @@ export function findPost(id: number) {
     })
 }
 
-export function updatePost(id: number, title: string, content: string) {
+export function updatePostTitle(id: number, title: string) {
     return prisma.post.update({
         where: {
-            id
+            id,
         },
         data: {
             title,
-            content
+        }
+    })
+}
+
+export function updatePostContent(id: number, content: string) {
+    return prisma.post.update({
+        where: {
+            id,
+        },
+        data: {
+            content,
         }
     })
 }
