@@ -26,3 +26,11 @@ export function findProfileByEmail(email: string) {
         }
     })
 }
+
+export function findProfile(id: number) {
+    return prisma.profile.findUnique({
+        where: {
+            id
+        }
+    })
+}
