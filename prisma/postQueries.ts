@@ -26,3 +26,15 @@ export function findPost(id: number) {
         }
     })
 }
+
+export function updatePost(id: number, title: string, content: string) {
+    return prisma.post.update({
+        where: {
+            id
+        },
+        data: {
+            title,
+            content
+        }
+    })
+}
