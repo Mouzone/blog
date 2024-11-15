@@ -59,3 +59,11 @@ export function updatePostShow(id: number, isShown: boolean) {
         }
     })
 }
+
+export function deletePost(id: number) {
+    return prisma.post.delete({
+        where: {
+            id
+        }
+    })
+}

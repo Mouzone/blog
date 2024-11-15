@@ -22,7 +22,15 @@ export function findComment(id: number) {
 export function findComments(postId: number) {
     return prisma.comment.findMany({
         where: {
-            postId
+            postId,
+        }
+    })
+}
+
+export function deleteComments(postId: number) {
+    return prisma.comment.deleteMany({
+        where: {
+            postId,
         }
     })
 }
