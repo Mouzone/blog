@@ -48,3 +48,14 @@ export function updatePostContent(id: number, content: string) {
         }
     })
 }
+
+export function updatePostShow(id: number, isShown: boolean) {
+    return prisma.post.update({
+        where: {
+            id,
+        },
+        data: {
+            isShown,
+        }
+    })
+}
