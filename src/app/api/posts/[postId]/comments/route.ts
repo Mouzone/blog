@@ -1,7 +1,7 @@
 import {headers} from "next/headers";
 import {createComment, findComments} from "../../../../../../prisma/commentQueries.ts";
 
-export async function GET({ params }: { params: Promise<{ postId: string }> }) {
+export async function GET(_request: Request, { params }: { params: Promise<{ postId: string }> }) {
     const postId = (await params).postId
     const comments = await findComments(parseInt(postId))
 
@@ -24,7 +24,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ pos
             message: "Authentication Error"
         })
     }
-    
+
     const postId = (await params).postId
     const { content }= await request.json()
 
