@@ -1,22 +1,17 @@
 import { PrismaClient } from "prisma/prisma-client"
 const prisma = new PrismaClient()
 
-export function createPost(profileId: number, title: string, content: string) {
+export function createPost(title: string, content: string) {
     return prisma.post.create({
         data: {
-            profileId,
             title,
             content
         }
     })
 }
 
-export function findPosts(profileId: number) {
-    return prisma.post.findMany({
-        where: {
-            profileId
-        }
-    })
+export function findPosts() {
+    return prisma.post.findMany()
 }
 
 export function findPost(id: number) {
@@ -27,34 +22,14 @@ export function findPost(id: number) {
     })
 }
 
-export function updatePostTitle(id: number, title: string) {
+export function updatePost(id: number, title: string, content: string, isShown: boolean) {
     return prisma.post.update({
         where: {
             id,
         },
         data: {
             title,
-        }
-    })
-}
-
-export function updatePostContent(id: number, content: string) {
-    return prisma.post.update({
-        where: {
-            id,
-        },
-        data: {
             content,
-        }
-    })
-}
-
-export function updatePostShow(id: number, isShown: boolean) {
-    return prisma.post.update({
-        where: {
-            id,
-        },
-        data: {
             isShown,
         }
     })
