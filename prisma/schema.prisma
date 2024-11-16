@@ -31,10 +31,3 @@ model Comment {
   Post   Post @relation(fields: [postId], references: [id])
   postId Int
 }
-
-model Profile {
-  id       Int     @id @default(autoincrement())
-  username String  @unique
-  password String
-  isAuthor Boolean @default(false)
-}
