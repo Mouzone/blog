@@ -1,18 +1,17 @@
-import {NextRequest, NextResponse} from "next/server";
+import {NextResponse} from "next/server";
 import {headers} from "next/headers";
-import {type JWTPayload, jwtVerify} from "jose";
+import { jwtVerify} from "jose";
 
 export const config = {
     matcher: [
-        "/api/posts/:path*",
-    ],
+        '/api/posts/create',
+        '/api/posts/:path*/delete',
+        '/api/posts/:path*/update',
+        '/api/comments/create'
+    ]
 }
 
-interface Payload extends JWTPayload {
-    id: string,
-}
-
-export async function middleware(request: NextRequest) {
+export async function middleware() {
     const headersList = await headers()
     const bearerHeader = headersList.get("authorization")
 
@@ -21,18 +20,12 @@ export async function middleware(request: NextRequest) {
         const bearerToken = bearer[1]
 
         try {
-            const { payload} = await  jwtVerify(
+            await jwtVerify(
                 bearerToken,
                 new TextEncoder().encode(process.env["JWT_KEY"])
-            ) as { payload: Payload }
-            const requestHeaders = new Headers(request.headers)
-            requestHeaders.set('id', payload.id)
+            )
 
-            return NextResponse.next({
-                request: {
-                    headers: requestHeaders,
-                },
-            })
+            return NextResponse.next()
 
         } catch(error) {
             return NextResponse.json({
