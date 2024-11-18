@@ -1,3 +1,5 @@
+# CREATING SINGLE POST, RETRIEVING, UPDATING AND DELETING
+
 # Login and get token to pass for each request
 POST http://localhost:3000/api/log-in
 [FormParams]
@@ -20,25 +22,42 @@ jsonpath "$.status" == 200
 [Captures]
 postId: jsonpath "$.postId"
 
-# Get all the post(s) created
-GET http://localhost:3000/api/posts
+# Get the post created
+GET http://localhost:3000/api/posts/{{postId}}
 Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
 jsonpath "$.status" == 200
-jsonpath "$.posts" count == 1
+jsonpath "$.post.title" == "title"
+jsonpath "$.post.content" == "content"
+jsonpath "$.post.isShown" == true
 
-# Delete the psot that was created before
+# Update post title and content
+POST http://localhost:3000/api/posts/{{postId}}/update
+Authorization: Bearer {{token}}
+{
+  "title": "title2",
+  "content": "content2",
+  "isShown": false
+}
+HTTP 200
+[Asserts]
+jsonpath "$.status" == 200
+
+# REtrieve post and check that the fields are updated
+GET http://localhost:3000/api/posts/{{postId}}}
+Authorization: Bearer {{token}}
+HTTP 200
+[Asserts]
+jsonpath "$.status" == 200
+jsonpath "$.post.title" == "title2"
+jsonpath "$.post.content" == "content2"
+jsonpath "$.post.isShown" == false
+
+
+# Delete the post that was created before
 POST http://localhost:3000/api/posts/{{postId}}/delete
 Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
 jsonpath "$.status" == 200
-
-# Check that there are no posts at all 
-GET http://localhost:3000/api/posts
-Authorization: Bearer {{token}}
-HTTP 200
-[Asserts]
-jsonpath "$.status" == 200
-jsonpath "$.posts" count == 0
