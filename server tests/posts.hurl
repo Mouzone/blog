@@ -68,3 +68,10 @@ Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
 jsonpath "$.status" == 200
+
+# Should have an error status in the response due to the post no longer existing
+GET http://localhost:3000/api/posts/{{postId}}
+Authorization: Bearer {{token}}
+HTTP 200
+[Asserts]
+jsonpath "$.status" == 200
