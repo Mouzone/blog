@@ -44,8 +44,8 @@ HTTP 200
 [Asserts]
 jsonpath "$.status" == 200
 
-# REtrieve post and check that the fields are updated
-GET http://localhost:3000/api/posts/{{postId}}}
+# Retrieve post and check that the fields are updated
+GET http://localhost:3000/api/posts/{{postId}}
 Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
@@ -54,6 +54,13 @@ jsonpath "$.post.title" == "title2"
 jsonpath "$.post.content" == "content2"
 jsonpath "$.post.isShown" == false
 
+# Check mass retrieval works
+GET http://localhost:3000/api/posts
+Authorization: Bearer {{token}}
+HTTP 200
+[Asserts]
+jsonpath "$.status" == 200
+jsonpath "$.posts" count == 1
 
 # Delete the post that was created before
 POST http://localhost:3000/api/posts/{{postId}}/delete
