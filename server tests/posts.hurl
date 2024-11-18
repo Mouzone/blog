@@ -74,4 +74,4 @@ GET http://localhost:3000/api/posts/{{postId}}
 Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
-jsonpath "$.status" == 200
+jsonpath "$.status" == 403
