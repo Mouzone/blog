@@ -44,7 +44,7 @@ function UserActions() {
     return <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
         {isAuthenticated === "true"
             ? <button type="button" className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"> New Post </button>
-            : <button type="button" className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"> Sign Up </button>
+            : <button type="button" className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"> Log In </button>
         }
     </div>
 }
