@@ -1,9 +1,7 @@
 import { getToken } from "../../../../utility/getToken.ts";
 
 export async function POST(request: Request) {
-    const formData = await request.formData()
-    const username = formData.get("username")
-    const password = formData.get("password")
+    const { username, password } = await request.json()
 
     if (username !== process.env["USERNAME"] && password !== process.env["PASSWORD"]) {
         return Response.json({

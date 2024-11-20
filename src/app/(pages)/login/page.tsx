@@ -1,15 +1,29 @@
 "use client"
-import React, { useState } from "react";
+import React, {type FormEvent, useState} from "react";
 
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            const response = await fetch('/api/login', { method: "Post"})
+            const response = await fetch(
+                '/api/log-in',
+                {
+                    method: "POST",
+                    body: JSON.stringify({ username, password }),
+                }
+            )
+
+            if (!response.ok) {
+                new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json()
             const accessToken = data["accessToken"]
+            localStorage.setItem("accessToken", accessToken)
+        } catch(error) {
+            console.error("Login failed", error)
         }
     }
     return (
@@ -44,7 +58,7 @@ function Header() {
 
 function Input({ type, value, update }: { type: string, value: string, update: React.Dispatch<React.SetStateAction<string>> }) {
     return <div>
-        <label htmlFor={value} className="block text-sm/6 font-medium text-gray-900">
+        <label htmlFor={type} className="block text-sm/6 font-medium text-gray-900">
             {type.at(0)?.toUpperCase() + type.substring(1)}
         </label>
         <div className="mt-2">
