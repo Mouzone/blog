@@ -1,6 +1,5 @@
 "use client"
 import { Disclosure } from '@headlessui/react'
-import {useEffect, useState} from "react";
 import Link from "next/link"
 
 function classNames(...classes: Array<string | undefined | null | boolean>) {
@@ -8,7 +7,7 @@ function classNames(...classes: Array<string | undefined | null | boolean>) {
 }
 
 // todo: pass prop of current page
-export default function NavBar() {
+export default function NavBar({isAuthenticated} : {isAuthenticated: boolean}) {
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -25,25 +24,19 @@ export default function NavBar() {
                     >
                         Posts
                     </Link>
-                    <UserActions/>
+                    <UserActions isAuthenticated={isAuthenticated}/>
                 </div>
             </div>
         </Disclosure>
     )
 }
 
-function UserActions() {
+function UserActions({isAuthenticated} : {isAuthenticated: boolean}) {
     // if authenticated show "new post" and "sign out"
     // if not authenticated show "log-in"
-    const [isAuthenticated, setIsAuthenticated] = useState("false")
-
-    useEffect(() => {
-        const value = localStorage.getItem("accessToken") ? "true" : "false"
-        setIsAuthenticated(value)
-    }, [])
 
     return <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        {isAuthenticated === "true"
+        {isAuthenticated
             ? <button type="button" className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"> New Post </button>
             : <Link
                 key="Login"

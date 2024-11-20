@@ -18,10 +18,14 @@ export default function Login() {
             )
 
             if (!response.ok) {
-                new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
             const data = await response.json()
+            if (!data["accessToken"]) {
+                throw new Error(`Invalid credentials`)
+            }
+
             const accessToken = data["accessToken"]
             localStorage.setItem("accessToken", accessToken)
             router.push("/")
