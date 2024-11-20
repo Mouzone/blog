@@ -7,6 +7,7 @@ function classNames(...classes: Array<string | undefined | null | boolean>) {
     return classes.filter(Boolean).join(' ')
 }
 
+// todo: pass prop of current page
 export default function NavBar() {
     return (
         <Disclosure as="nav" className="bg-gray-800">
