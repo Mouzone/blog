@@ -31,7 +31,6 @@ export default function NavBar() {
     )
 }
 
-{/* Profile dropdown */}
 function UserActions() {
     // if authenticated show "new post" and "sign out"
     // if not authenticated show "log-in"
