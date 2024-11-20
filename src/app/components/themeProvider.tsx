@@ -1,0 +1,18 @@
+'use client'
+import React, {createContext, useState} from 'react'
+
+type AuthContextType = {
+    isAuthenticated: boolean;
+    setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ThemeContext = createContext<AuthContextType | undefined>(undefined);
+
+export default function ThemeProvider({
+                                          children,
+                                      }: {
+    children: React.ReactNode
+}) {
+    const [isAuthenticated, setAuthenticated] = useState(false)
+    return <ThemeContext.Provider value={{ isAuthenticated, setAuthenticated }}>{children}</ThemeContext.Provider>
+}

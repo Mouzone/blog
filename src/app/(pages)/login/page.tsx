@@ -1,9 +1,11 @@
 "use client"
 import React, {type FormEvent, useState} from "react";
 import { useRouter } from 'next/navigation'
+import {useAuth} from "@/hooks/useAuth.ts";
 
 export default function Login() {
     const router = useRouter()
+    const { setAuthenticated } = useAuth()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async (e: FormEvent) => {
@@ -28,6 +30,7 @@ export default function Login() {
 
             const accessToken = data["accessToken"]
             localStorage.setItem("accessToken", accessToken)
+            setAuthenticated(true)
             router.push("/")
         } catch(error) {
             console.error("Login failed", error)

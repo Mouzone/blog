@@ -2,9 +2,8 @@
 import { Inter } from 'next/font/google'
 import "./globals.css";
 import NavBar from "@/app/components/NavBar.tsx";
-import { useState } from "react";
-import { createContext } from 'react'
-
+import React from "react";
+import ThemeProvider from "@/app/components/themeProvider.tsx";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -12,23 +11,21 @@ const inter = Inter({
   display: 'swap',
 })
 
-const ThemeContext = createContext({})
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-    const [isAuthenticated, setAuthenticated] = useState(false)
     return (
     <html lang="en">
       <body
         className={`${inter.className} antialiased`}
       >
-        <NavBar isAuthenticated={isAuthenticated}/>
-        <ThemeContext.Provider value={setAuthenticated}>
+        <ThemeProvider>
+            <NavBar/>
             {children}
-        </ThemeContext.Provider>
+        </ThemeProvider>
       </body>
     </html>
   )
