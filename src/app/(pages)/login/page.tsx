@@ -1,7 +1,9 @@
 "use client"
 import React, {type FormEvent, useState} from "react";
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
+    const router = useRouter()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async (e: FormEvent) => {
@@ -22,6 +24,7 @@ export default function Login() {
             const data = await response.json()
             const accessToken = data["accessToken"]
             localStorage.setItem("accessToken", accessToken)
+            router.push("/")
         } catch(error) {
             console.error("Login failed", error)
         }
