@@ -15,13 +15,11 @@ export async function POST(request: Request) {
 
     try {
         const accessToken = await getToken({ }, "1h")
-        const refreshToken = await getToken( { })
 
         return Response.json({
             error: false,
             status: 200,
             accessToken,
-            refreshToken,
             message: "success"
         })
     } catch(error) {

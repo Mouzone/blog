@@ -4,13 +4,21 @@ import React, { useState } from "react";
 export default function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch('/api/login', { method: "Post"})
+            const data = await response.json()
+            const accessToken = data["accessToken"]
+        }
+    }
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <Header/>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form action="/api/log-in" method="POST" className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6">
                         <Input type="username" value={username} update={setUsername}/>
                         <Input type="password" value={password} update={setPassword}/>
                         <button
