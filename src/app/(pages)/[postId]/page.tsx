@@ -1,30 +1,45 @@
-export default async function Post({ params }) {
+interface Post {
+    id: string,
+    title: string,
+    description: string,
+    content: string,
+    createdAt: string,
+    comments: [ Comment ]
+}
+
+interface Comment {
+    id: string,
+    content: string,
+    createdAt: string,
+    postId: string,
+}
+
+export default async function Post({ params }:{ params: Promise<{ postId: string }> }) {
     const postId = (await params).postId
     const response = await fetch(`http://localhost:3000/api/posts/${postId}`)
     const data = await response.json()
     // error check here
-    const post = data["post"]
+    const post: Post = data["post"]
     return <>
         {post.title}
         {post.description}
         {post.content}
         {post.createdAt}
-        <Comments values={post.comments}/>
+        <Comments comments={post.comments}/>
     </>
 }
 
-function Comments({ values }: { values: [ value: object ] }) {
-    console.log(values)
+function Comments({ comments }: { comments: [ Comment ]}) {
     return <>
-        {values.map(value => {
-            return <Comment key={value.id} value={value}/>
+        {comments.map(comment => {
+            return <Comment key={comment.id} comment={comment}/>
         })}
     </>
 }
 
-function Comment({ value }: { value: { content: string, createdAt: string } }) {
+function Comment({ comment }: { comment: { content: string, createdAt: string } }) {
     return <>
-        {value.content}
-        {value.createdAt}
+        {comment.content}
+        {comment.createdAt}
     </>
 }
