@@ -19,6 +19,9 @@ export function findPost(id: number) {
     return prisma.post.findUnique({
         where: {
             id
+        },
+        include: {
+            comments: true,
         }
     })
 }

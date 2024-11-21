@@ -9,9 +9,22 @@ export default async function Post({ params }) {
         {post.description}
         {post.content}
         {post.createdAt}
+        <Comments values={post.comments}/>
     </>
 }
 
-function Comments() {
+function Comments({ values }: { values: [ value: object ] }) {
+    console.log(values)
+    return <>
+        {values.map(value => {
+            return <Comment key={value.id} value={value}/>
+        })}
+    </>
+}
 
+function Comment({ value }: { value: { content: string, createdAt: string } }) {
+    return <>
+        {value.content}
+        {value.createdAt}
+    </>
 }
