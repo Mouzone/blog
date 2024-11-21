@@ -13,6 +13,6 @@ export default function ThemeProvider({
                                       }: {
     children: React.ReactNode
 }) {
-    const [isAuthenticated, setAuthenticated] = useState(false)
+    const [isAuthenticated, setAuthenticated] = useState(localStorage.getItem("accessToken") !== null)
     return <ThemeContext.Provider value={{ isAuthenticated, setAuthenticated }}>{children}</ThemeContext.Provider>
 }
