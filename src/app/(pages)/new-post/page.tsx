@@ -62,7 +62,6 @@ export default function NewPage() {
     )
 }
 
-// todo: add a required for title
 function TextInput({value, label, setState}: {value: string, label: string, setState: React.Dispatch<string>}) {
     return <div className="sm:col-span-4">
         <label htmlFor={label} className="block text-sm/6 font-medium text-gray-900">
@@ -85,7 +84,6 @@ function TextInput({value, label, setState}: {value: string, label: string, setS
     </div>
 }
 
-// todo: some errorr with this one being controlled or uncontrolled
 function TextArea({value, label, setState}: { value: string, label: string, setState: React.Dispatch<string>}) {
     return <div className="col-span-full">
         <label htmlFor={label} className="block text-sm/6 font-medium text-gray-900">
@@ -99,7 +97,6 @@ function TextArea({value, label, setState}: { value: string, label: string, setS
                 value={value}
                 onChange={(e) => setState(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
-                defaultValue={''}
             />
         </div>
     </div>
