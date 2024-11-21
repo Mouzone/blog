@@ -1,10 +1,14 @@
-"use client"
-import {useParams} from "next/navigation";
-
-export default function Post() {
-    const { postId } = useParams()
+export default async function Post({ params }) {
+    const postId = (await params).postId
+    const response = await fetch(`http://localhost:3000/api/posts/${postId}`)
+    const data = await response.json()
+    // error check here
+    const post = data["post"]
     return <>
-        {postId}
+        {post.title}
+        {post.description}
+        {post.content}
+        {post.createdAt}
     </>
 }
 
