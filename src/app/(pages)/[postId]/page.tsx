@@ -37,7 +37,7 @@ function Comments({ comments }: { comments: [ Comment ]}) {
     </>
 }
 
-function Comment({ comment }: { comment: { content: string, createdAt: string } }) {
+function Comment({ comment }: { comment: Comment }) {
     return <>
         {comment.content}
         {comment.createdAt}
