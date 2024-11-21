@@ -62,6 +62,7 @@ export default function NewPage() {
     )
 }
 
+// todo: add a required for title
 function TextInput({value, label, setState}: {value: string, label: string, setState: React.Dispatch<string>}) {
     return <div className="sm:col-span-4">
         <label htmlFor={label} className="block text-sm/6 font-medium text-gray-900">
