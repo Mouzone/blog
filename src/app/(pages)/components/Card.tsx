@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export function Card({ token }: { token: string | null}, id: string, title: string, description: string, dateString: string) {
+export function Card(token: string | null, id: string, title: string, description: string, dateString: string) {
     const date = new Date(dateString)
     const formatted = date.toLocaleDateString('en-US', {
         year: 'numeric',
@@ -22,7 +22,7 @@ export function Card({ token }: { token: string | null}, id: string, title: stri
             </h3>
             <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{description}</p>
         </div>
-        { token ||
+        { token === null ||
             <div>
                 <button>
                     {/*closed eye*/}
