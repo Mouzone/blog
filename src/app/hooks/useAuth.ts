@@ -1,4 +1,4 @@
-import {ThemeContext} from "@/app/(pages)/components/themeProvider.tsx";
+import {ThemeContext} from "@/app/hooks/themeProvider.tsx";
 import {useContext} from "react";
 
 export function useAuth() {
