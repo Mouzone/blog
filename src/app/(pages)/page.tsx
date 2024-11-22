@@ -9,8 +9,11 @@ interface Post {
 }
 
 export default async function Posts() {
-    // todo: based on authentication status get the different posts
-    const response = await fetch("http://localhost:3000/api/posts")
+    const response = await fetch("http://localhost:3000/api/posts", {
+        headers: {
+            authorization: `Bearer: ${localStorage?.getItem("accessToken")}`
+        }
+    })
     const data: { posts: Post[] } = await response.json()
     const posts = data["posts"]
 
