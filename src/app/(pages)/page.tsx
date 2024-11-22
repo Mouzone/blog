@@ -1,5 +1,3 @@
-"use client"
-
 import {Card} from "@/app/(pages)/components/Card.tsx";
 import Cookies from "js-cookie"
 
