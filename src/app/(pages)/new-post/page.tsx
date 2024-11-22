@@ -1,6 +1,7 @@
 "use client"
 import React, {type FormEvent, useState} from "react";
 import {useRouter} from "next/navigation";
+import Cookies from 'js-cookie'
 
 export default function NewPage() {
     const [title, setTitle] = useState("")
@@ -15,7 +16,7 @@ export default function NewPage() {
                 {
                     method: "POST",
                     headers: {
-                        authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                        authorization: Cookies.get("accessToken")
                     },
                     body: JSON.stringify({
                         title,

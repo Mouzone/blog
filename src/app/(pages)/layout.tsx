@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import NavBar from "@/app/(pages)/components/NavBar.tsx";
 import React from "react";
-import ThemeProvider from "@/app/hooks/themeProvider.tsx";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,10 +19,8 @@ export default function RootLayout({
     return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider>
-            <NavBar/>
-            {children}
-        </ThemeProvider>
+        <NavBar/>
+        {children}
       </body>
     </html>
   )
