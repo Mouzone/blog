@@ -1,11 +1,10 @@
 "use client"
 import React, {type FormEvent, useState} from "react";
 import { useRouter } from 'next/navigation'
-import {useAuth} from "@/app/hooks/useAuth.ts";
+import Cookies from 'js-cookie'
 
 export default function Login() {
     const router = useRouter()
-    const { setToken } = useAuth()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async (e: FormEvent) => {
@@ -28,9 +27,7 @@ export default function Login() {
                 throw new Error(`Invalid credentials`)
             }
 
-            const accessToken = data["accessToken"]
-            localStorage.setItem("accessToken", accessToken)
-            setToken(data["accessToken"])
+            Cookies.set('accessToken', data["accessToken"], {expires: 1})
             router.push("/")
         } catch(error) {
             console.error("Login failed", error)
