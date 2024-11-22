@@ -16,7 +16,7 @@ export default function NewPage() {
                 {
                     method: "POST",
                     headers: {
-                        authorization: Cookies.get("accessToken")
+                        authorization: `Bearer ${Cookies.get("accessToken")}`
                     },
                     body: JSON.stringify({
                         title,

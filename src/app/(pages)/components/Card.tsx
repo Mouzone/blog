@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Cookies from "js-cookie"
 
-export function Card(token: string | null, id: string, title: string, description: string, dateString: string) {
+export function Card(id: string, title: string, description: string, dateString: string) {
     const date = new Date(dateString)
     const formatted = date.toLocaleDateString('en-US', {
         year: 'numeric',
@@ -22,7 +23,7 @@ export function Card(token: string | null, id: string, title: string, descriptio
             </h3>
             <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{description}</p>
         </div>
-        { token === null ||
+        { Cookies.get("accessToken") ||
             <div>
                 <button>
                     {/*closed eye*/}
