@@ -4,8 +4,8 @@ interface Comment {
     createdAt: string,
     postId: string,
 }
-import { CreateComment } from './CreateComment'
-import { Comment } from './Comment'
+import { CreateComment } from './CreateComment.tsx'
+import { Comment } from './Comment.tsx'
 
 export default async function Comments({postId}: { postId: string }) {
     const response = await fetch(`http://localhost:3000/api/comments/${postId}`)

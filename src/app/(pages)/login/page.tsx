@@ -1,7 +1,7 @@
 "use client"
 import React, {type FormEvent, useState} from "react";
 import { useRouter } from 'next/navigation'
-import {useAuth} from "@/hooks/useAuth.ts";
+import {useAuth} from "@/app/hooks/useAuth.ts";
 
 export default function Login() {
     const router = useRouter()

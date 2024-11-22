@@ -1,8 +1,8 @@
 "use client"
 import {useRouter} from "next/navigation";
 import React from "react";
-import {useAuth} from "@/hooks/useAuth.ts";
-import {StyledLink} from "@/app/components/StyledLink.tsx";
+import {useAuth} from "@/app/hooks/useAuth.ts";
+import {StyledLink} from "@/app/(pages)/[postId]/components/StyledLink.tsx";
 
 export function UserActions() {
     // if authenticated show "new post" and "sign out"

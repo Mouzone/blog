@@ -1,5 +1,5 @@
-import {Card} from "@/app/components/Card.tsx";
-import {useAuth} from "@/hooks/useAuth.ts";
+import {Card} from "@/app/(pages)/[postId]/components/Card.tsx";
+import {useAuth} from "@/app/hooks/useAuth.ts";
 
 interface Post {
     id: string,
