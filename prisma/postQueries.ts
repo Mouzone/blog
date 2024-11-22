@@ -11,8 +11,16 @@ export function createPost(title: string, description: string, content: string) 
     })
 }
 
-export function findPosts() {
+export function findPostsAll() {
     return prisma.post.findMany()
+}
+
+export function findPostsShown() {
+    return prisma.post.findMany({
+        where: {
+            isShown: true,
+        }
+    })
 }
 
 export function findPost(id: number) {
