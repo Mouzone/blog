@@ -1,4 +1,5 @@
 import {Card} from "@/app/components/Card.tsx";
+import {useAuth} from "@/hooks/useAuth.ts";
 
 interface Post {
     id: string,
@@ -8,8 +9,17 @@ interface Post {
     isShown: string,
 }
 
-export default async function Posts() {
-    const response = await fetch("http://localhost:3000/api/posts")
+export default function Overhead() {
+    const { token } = useAuth()
+    return <Posts token={token}/>
+}
+
+async function Posts({ token }: { token: string | null}) {
+    const response = await fetch("http://localhost:3000/api/posts", {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const data: { posts: Post[] } = await response.json()
     const posts = data["posts"]
 

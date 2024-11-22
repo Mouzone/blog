@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React, {createContext, useState} from 'react'
 
 type AuthContextType = {
@@ -13,6 +13,6 @@ export default function ThemeProvider({
                                       }: {
     children: React.ReactNode
 }) {
-    const [token, setToken] = useState(localStorage.getItem("accessToken"))
+    const [token, setToken] = useState(localStorage.getItem("accessToken") || null)
     return <ThemeContext.Provider value={{ token, setToken }}>{children}</ThemeContext.Provider>
 }
