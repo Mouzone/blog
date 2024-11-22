@@ -20,9 +20,6 @@ export function findPost(id: number) {
         where: {
             id
         },
-        include: {
-            comments: true,
-        }
     })
 }
 

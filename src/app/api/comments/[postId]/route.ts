@@ -1,9 +1,9 @@
-import {findComments} from "../../../../prisma/commentQueries.ts";
+import {findComments} from "../../../../../prisma/commentQueries.ts";
 
-export async function GET(request: Request) {
+export async function GET(_request: Request, { params }: { params: Promise<{ postId: string }> }) {
     try {
-        const { id } = await request.json()
-        const comments = await findComments(parseInt(id))
+        const postId = (await params).postId
+        const comments = await findComments(parseInt(postId))
 
         return Response.json({
             error: false,

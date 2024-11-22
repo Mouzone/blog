@@ -36,7 +36,7 @@ export default async function Post({ params }:{ params: Promise<{ postId: string
             <p className="text-xl">{post.content}</p>
             <div className="divider"></div>
         </div>
-        <Comments postId={ postId } comments={post.comments}/>
+        <Comments postId={ postId }/>
     </div>
 }
 
@@ -51,7 +51,10 @@ function CreateComment({ postId }: { postId: string }) {
     </form>
 }
 
-function Comments({postId, comments}: { postId: string, comments: [ Comment] }) {
+async function Comments({postId}: { postId: string }) {
+    const response = await fetch(`http://localhost:3000/api/comments/${postId}`)
+    const data = await response.json()
+    const comments: [ Comment ] = data["comments"]
     return <div className="flex-col">
         <CreateComment postId={postId}/>
         {
