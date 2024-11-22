@@ -14,7 +14,7 @@ export function Comment({comment}: { comment: Comment }) {
         month: 'long',
         day: 'numeric'
     })
-    return <div className="flex-col max-w-96 border-2 p-3 rounded-2xl mx-auto mb-5">
+    return <div className="max-w-96 border-2 p-3 rounded-2xl mx-auto mb-5">
         <p>{comment.content}</p>
         <p className="text-xs text-right">{formatted}</p>
     </div>

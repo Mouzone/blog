@@ -22,7 +22,7 @@ export default async function Post({ params }:{ params: Promise<{ postId: string
         month: 'long',
         day: 'numeric'
     })
-    return <div className="flex-col mx-32 mt-10">
+    return <div className="mx-32 mt-10">
         <div className="border-b-2 pb-5 mb-5">
             <h1 className="text-5xl font-bold">{post.title}</h1>
             <p className="text-xs">{formatted}</p>

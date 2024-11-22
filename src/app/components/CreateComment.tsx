@@ -32,8 +32,8 @@ export function CreateComment({ postId }: { postId: string }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex-col mx-auto">
-            <input
+        <form onSubmit={handleSubmit} className="flex flex-col mx-auto border-2 p-3 rounded-2xl mb-5 max-w-96">
+            <textarea
                 id="content"
                 name="content"
                 value={content}
@@ -45,9 +45,13 @@ export function CreateComment({ postId }: { postId: string }) {
                 name="postId"
                 value={postId}
             />
-            <button type="submit">
-                Comment
-            </button>
+            <div className="flex justify-end mt-2">
+                <button
+                    type="submit"
+                    className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium">
+                    Comment
+                </button>
+            </div>
         </form>
     )
 }

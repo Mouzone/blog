@@ -13,7 +13,7 @@ export default async function Comments({postId}: { postId: string }) {
     const comments: Comment[] = data["comments"]
 
     return (
-        <div className="flex-col">
+        <div>
             <CreateComment postId={postId}/>
             {comments.map(comment => (
                 <Comment key={comment.id} comment={comment}/>
