@@ -36,12 +36,24 @@ export default async function Post({ params }:{ params: Promise<{ postId: string
             <p className="text-xl">{post.content}</p>
             <div className="divider"></div>
         </div>
-        <Comments comments={post.comments}/>
+        <Comments postId={ postId } comments={post.comments}/>
     </div>
 }
 
-function Comments({comments}: { comments: [ Comment] }) {
+function CreateComment({ postId }: { postId: string }) {
+    // todo: on success rerender the page
+    return <form action="/api/comments/create" method="POST" className="flex-col mx-auto">
+        <input id="content" name="content"/>
+        <input type="hidden" name="postId" value={postId}/>
+        <button type="submit">
+            Comment
+        </button>
+    </form>
+}
+
+function Comments({postId, comments}: { postId: string, comments: [ Comment] }) {
     return <div className="flex-col">
+        <CreateComment postId={postId}/>
         {
             comments.map(comment =>
                 <Comment key={comment.id} comment={comment}/>
@@ -59,7 +71,7 @@ function Comment({comment}: { comment: Comment }) {
         month: 'long',
         day: 'numeric'
     })
-    return <div className="flex-col max-w-96 border-2 p-3 rounded-2xl mx-auto">
+    return <div className="flex-col max-w-96 border-2 p-3 rounded-2xl mx-auto mb-5">
         <p>{comment.content}</p>
         <p className="text-xs text-right">{formatted}</p>
     </div>

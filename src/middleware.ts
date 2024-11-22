@@ -7,7 +7,6 @@ export const config = {
         '/api/posts/create',
         '/api/posts/:path*/delete',
         '/api/posts/:path*/update',
-        '/api/comments/create'
     ]
 }
 
