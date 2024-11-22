@@ -1,4 +1,3 @@
-"use client"
 import {Card} from "@/app/components/Card.tsx";
 
 interface Post {
@@ -10,11 +9,7 @@ interface Post {
 }
 
 export default async function Posts() {
-    const response = await fetch("http://localhost:3000/api/posts", {
-        headers: {
-            authorization: `Bearer: ${localStorage?.getItem("accessToken")}`
-        }
-    })
+    const response = await fetch("http://localhost:3000/api/posts")
     const data: { posts: Post[] } = await response.json()
     const posts = data["posts"]
 

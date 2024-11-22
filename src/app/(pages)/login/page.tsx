@@ -5,7 +5,7 @@ import {useAuth} from "@/hooks/useAuth.ts";
 
 export default function Login() {
     const router = useRouter()
-    const { setAuthenticated } = useAuth()
+    const { setToken } = useAuth()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const handleSubmit = async (e: FormEvent) => {
@@ -30,7 +30,7 @@ export default function Login() {
 
             const accessToken = data["accessToken"]
             localStorage.setItem("accessToken", accessToken)
-            setAuthenticated(true)
+            setToken(data["accessToken"])
             router.push("/")
         } catch(error) {
             console.error("Login failed", error)

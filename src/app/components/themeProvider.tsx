@@ -2,8 +2,8 @@
 import React, {createContext, useState} from 'react'
 
 type AuthContextType = {
-    isAuthenticated: boolean;
-    setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+    token: string | null;
+    setToken: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 export const ThemeContext = createContext<AuthContextType | undefined>(undefined);
@@ -13,6 +13,6 @@ export default function ThemeProvider({
                                       }: {
     children: React.ReactNode
 }) {
-    const [isAuthenticated, setAuthenticated] = useState(localStorage !== null && localStorage.getItem("accessToken") !== null)
-    return <ThemeContext.Provider value={{ isAuthenticated, setAuthenticated }}>{children}</ThemeContext.Provider>
+    const [token, setToken] = useState(localStorage.getItem("accessToken"))
+    return <ThemeContext.Provider value={{ token, setToken }}>{children}</ThemeContext.Provider>
 }
