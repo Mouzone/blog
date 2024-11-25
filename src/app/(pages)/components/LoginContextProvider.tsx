@@ -1,18 +1,18 @@
-import React, {createContext, type SetStateAction, useState} from "react";
+"use client"
+import React, {createContext, type ReactNode, useState} from "react";
 import Cookies from "js-cookie";
 
-const MyContext = createContext({
+export const LoginContext = createContext({
     loggedIn: false,
-    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
-})
+    setLoggedIn: (() => {}) as React.Dispatch<React.SetStateAction<boolean>>
+});
 
-
-export function MyContextProvider({ children }) {
+export function LoginContextProvider({ children }: { children: ReactNode}) {
     const [loggedIn, setLoggedIn] = useState(Cookies.get("accessToken") !== undefined);
 
     return (
-        <MyContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <LoginContext.Provider value={{ loggedIn, setLoggedIn }}>
             {children}
-        </MyContext.Provider>
+        </LoginContext.Provider>
     );
 }

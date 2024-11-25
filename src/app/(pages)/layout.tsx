@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import "./globals.css";
 import NavBar from "@/app/(pages)/components/NavBar.tsx";
 import React from "react";
+import {LoginContextProvider} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,12 +16,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
     return (
-    <html lang="en">
-      <body className={`${inter.className} antialiased`}>
-        <NavBar/>
-        {children}
-      </body>
-    </html>
-  )
+      <html lang="en">
+        <body className={`${inter.className} antialiased`}>
+          <LoginContextProvider>
+            <NavBar/>
+            {children}
+          </LoginContextProvider>
+        </body>
+      </html>
+    )
 }
