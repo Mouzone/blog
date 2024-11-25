@@ -1,3 +1,4 @@
+"use client"
 import {useRouter} from "next/navigation";
 import React from "react";
 import {StyledLink} from "@/app/(pages)/[postId]/components/StyledLink.tsx";
