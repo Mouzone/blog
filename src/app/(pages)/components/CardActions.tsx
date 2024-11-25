@@ -1,20 +1,17 @@
 "use client"
 import Cookies from "js-cookie";
 
-export default function CardActions({id, title, description, isShown}: {id: string, title: string, description: string, isShown: boolean}) {
+export default function CardActions({id, isShown}: {id: string, isShown: boolean}) {
     const deletePost = async () => {
-        await fetch(`http://localhost:8080/api/posts/${id}/delete`, {
+        await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
             method: "POST",
         })
     }
 
     const toggleShown = async () => {
-        await fetch(`http://localhost:8080/api/posts/${id}/update`, {
+        await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
             method: "POST",
             body: JSON.stringify({
-                title,
-                description,
-                content: null,
                 isShown: !isShown,
             })
         })

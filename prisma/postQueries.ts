@@ -45,6 +45,17 @@ export function updatePost(id: number, title: string, description: string, conte
     })
 }
 
+export function updateIsShown(id: number, isShown: boolean) {
+    return prisma.post.update({
+        where: {
+            id,
+        },
+        data: {
+            isShown,
+        }
+    })
+}
+
 export function deletePost(id: number) {
     return prisma.post.delete({
         where: {
