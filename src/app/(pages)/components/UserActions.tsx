@@ -1,15 +1,22 @@
 "use client"
 import {useRouter} from "next/navigation";
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {StyledLink} from "@/app/(pages)/[postId]/components/StyledLink.tsx";
 import Cookies from "js-cookie"
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx"
 
 export function UserActions() {
-    // if authenticated show "new post" and "sign out"
-    // if not authenticated show "log-in"
     const router = useRouter()
     const { loggedIn, setLoggedIn } = useContext(LoginContext);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null;
+    }
 
     return (
         loggedIn ? (
