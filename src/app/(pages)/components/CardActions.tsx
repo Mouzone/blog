@@ -1,7 +1,18 @@
 "use client"
 import Cookies from "js-cookie";
+import {useEffect, useState} from "react";
 
 export default function CardActions({id, isShown}: {id: string, isShown: boolean}) {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) {
+        return null
+    }
+
     const deletePost = async () => {
         const response = await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
             method: "POST",
