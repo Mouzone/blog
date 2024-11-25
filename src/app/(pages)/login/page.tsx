@@ -6,7 +6,7 @@ import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 export default function Login() {
     const router = useRouter()
-    const { loggedIn, setLoggedIn } = useContext(LoginContext);
+    const { accessToken, setAccessToken } = useContext(LoginContext);
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -31,8 +31,8 @@ export default function Login() {
             }
 
             Cookies.set('accessToken', data["accessToken"], {expires: 1})
-            if (!loggedIn) {
-                setLoggedIn(true)
+            if (!accessToken) {
+                setAccessToken(data["accessToken"])
             }
             router.push("/")
         } catch(error) {
