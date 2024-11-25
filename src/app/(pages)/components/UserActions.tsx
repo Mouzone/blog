@@ -8,7 +8,7 @@ export function UserActions() {
     // if authenticated show "new post" and "sign out"
     // if not authenticated show "log-in"
     const router = useRouter()
-    const [loggedIn, setLoggedIn ]= useState(Cookies.get("accessToken") !== null)
+    const [loggedIn, setLoggedIn ]= useState(Cookies.get("accessToken") !== undefined)
 
     return (
         loggedIn ? (
