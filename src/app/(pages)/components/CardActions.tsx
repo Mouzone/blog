@@ -3,18 +3,26 @@ import Cookies from "js-cookie";
 
 export default function CardActions({id, isShown}: {id: string, isShown: boolean}) {
     const deletePost = async () => {
-        await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
+        const response = await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
             method: "POST",
+            headers: {
+                authorization: `Bearer ${Cookies.get("accessToken")}`
+            },
         })
+        console.log(await response.json())
     }
 
     const toggleShown = async () => {
-        await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
+        const response = await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
             method: "POST",
+            headers: {
+                authorization: `Bearer ${Cookies.get("accessToken")}`
+            },
             body: JSON.stringify({
                 isShown: !isShown,
             })
         })
+        console.log(await response.json())
     }
 
     return <div>

@@ -12,7 +12,7 @@ export function Card({
     title: string,
     description: string,
     createdAt: string,
-    isShown: string
+    isShown: boolean
 }) {
     const date = new Date(createdAt);
     const formatted = date.toLocaleDateString('en-US', {
@@ -20,7 +20,6 @@ export function Card({
         month: 'long',
         day: 'numeric'
     })
-
     return (
         <div key={id} className="flex">
             <article className="flex max-w-xl flex-col items-start justify-between">
@@ -39,7 +38,7 @@ export function Card({
                     <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{description}</p>
                 </div>
             </article>
-            <CardActions id={id} title={title} description={description} isShown={isShown === "true"}/>
+            <CardActions id={id} isShown={isShown}/>
         </div>
     );
 }

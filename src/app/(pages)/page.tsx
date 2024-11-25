@@ -6,7 +6,7 @@ interface Post {
     title: string,
     description: string,
     createdAt: string,
-    isShown: string,
+    isShown: boolean,
 }
 
 export default async function Posts() {
@@ -17,6 +17,7 @@ export default async function Posts() {
     })
     const data: { posts: Post[] } = await response.json()
     const posts = data["posts"]
+
     return (
         <div className="bg-white py-24 sm:pt-12 pb-24">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
