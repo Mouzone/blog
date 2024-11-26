@@ -19,7 +19,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     }
 
     const deletePost = async () => {
-        await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
+        await fetch(`/api/posts/${id}/delete`, {
             method: "POST",
             headers: {
                 authorization: `Bearer ${Cookies.get("accessToken")}`
@@ -29,7 +29,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     }
 
     const toggleShown = async () => {
-        await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
+        await fetch(`/api/posts/${id}/toggle-shown`, {
             method: "POST",
             headers: {
                 authorization: `Bearer ${Cookies.get("accessToken")}`

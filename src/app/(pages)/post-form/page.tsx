@@ -23,7 +23,7 @@ export default function PostForm() {
         }
 
         async function fetchPost() {
-            const response = await fetch(`http://localhost:3000/api/posts/${postId}`)
+            const response = await fetch(`/api/posts/${postId}`)
             const { post } = await response.json()
 
             setTitle(post.title)
