@@ -1,5 +1,6 @@
 import Link from "next/link";
 import CardActions from "@/app/(pages)/components/CardActions.tsx";
+import React from "react";
 
 export default function Card({
                          id,
