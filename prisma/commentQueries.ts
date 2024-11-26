@@ -10,8 +10,10 @@ export function createComment(postId: number, content: string) {
     })
 }
 
-export function findComments(postId: number) {
+export function findComments(postId: number, skip: number, take: number) {
     return prisma.comment.findMany({
+        skip,
+        take,
         where: {
             postId,
         },

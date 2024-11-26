@@ -11,16 +11,20 @@ export function createPost(title: string, description: string, content: string) 
     })
 }
 
-export function findPostsAll() {
+export function findPostsAll(skip: number, take: number) {
     return prisma.post.findMany({
+        skip,
+        take,
         orderBy: {
             createdAt: 'desc'
         }
     })
 }
 
-export function findPostsShown() {
+export function findPostsShown(skip: number, take: number) {
     return prisma.post.findMany({
+        skip,
+        take,
         where: {
             isShown: true,
         },
