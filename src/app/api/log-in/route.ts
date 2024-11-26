@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const accessToken = await getToken({ }, "1d")
+        const accessToken = await getToken({ })
 
         return Response.json({
             error: false,

@@ -30,7 +30,7 @@ export default function Login() {
                 throw new Error(`Invalid credentials`)
             }
 
-            Cookies.set('accessToken', data["accessToken"], {expires: 1})
+            Cookies.set('accessToken', data["accessToken"])
             if (!accessToken) {
                 setAccessToken(data["accessToken"])
             }
