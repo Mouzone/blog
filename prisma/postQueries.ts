@@ -12,13 +12,20 @@ export function createPost(title: string, description: string, content: string) 
 }
 
 export function findPostsAll() {
-    return prisma.post.findMany()
+    return prisma.post.findMany({
+        orderBy: {
+            createdAt: 'desc'
+        }
+    })
 }
 
 export function findPostsShown() {
     return prisma.post.findMany({
         where: {
             isShown: true,
+        },
+        orderBy: {
+            createdAt: 'desc'
         }
     })
 }
@@ -27,7 +34,7 @@ export function findPost(id: number) {
     return prisma.post.findUnique({
         where: {
             id
-        },
+        }
     })
 }
 
