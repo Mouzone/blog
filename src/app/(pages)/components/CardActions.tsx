@@ -7,7 +7,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     const [isClient, setIsClient] = useState(false);
     const [eyeOpen, setEyeOpen] = useState(isShown)
     const { accessToken } = useContext(LoginContext)
-    
+
     useEffect(() => {
         setIsClient(true)
     }, [])
@@ -40,7 +40,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     }
 
     return accessToken
-        ? <div className="flex flex-col space-x-2 justify-center">
+        ? <div className="flex flex-col ">
             <button
                 className="flex"
                 onClick={() => toggleShown()}
@@ -62,7 +62,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
                 onClick={() => deletePost()}
             >
                 <svg xmlns="http://www.w3.org/2000/svg"
-                     className="h-6 w-6"
+                     className="h-6 w-6 fill-red-600"
                      viewBox="0 0 24 24">
                     <path
                         d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
