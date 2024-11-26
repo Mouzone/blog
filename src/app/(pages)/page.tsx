@@ -14,7 +14,7 @@ interface Post {
 
 export default function Posts() {
     const [posts, setPosts] = useState<Post[]>([])
-    const [toDelete, setToDelete] = useState(null)
+    const [toDelete, setToDelete] = useState("")
     const {accessToken} = useContext(LoginContext)
     useEffect(() => {
         async function fetchPosts() {
@@ -24,7 +24,7 @@ export default function Posts() {
                         authorization: `Bearer ${accessToken}`
                     }
                 })
-                setToDelete(null)
+                setToDelete("")
             }
             const response = await fetch("/api/posts", {
                 headers: {
