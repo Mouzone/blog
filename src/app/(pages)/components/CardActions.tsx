@@ -15,18 +15,17 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     }
 
     const deletePost = async () => {
-        const response = await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
+        await fetch(`http://localhost:3000/api/posts/${id}/delete`, {
             method: "POST",
             headers: {
                 authorization: `Bearer ${Cookies.get("accessToken")}`
             },
         })
         setToDeleteAction(id)
-        console.log(await response.json())
     }
 
     const toggleShown = async () => {
-        const response = await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
+        await fetch(`http://localhost:3000/api/posts/${id}/toggle-shown`, {
             method: "POST",
             headers: {
                 authorization: `Bearer ${Cookies.get("accessToken")}`
@@ -36,7 +35,6 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
             })
         })
         setEyeOpen(!eyeOpen)
-        console.log(await response.json())
     }
 
     return <div>
@@ -57,6 +55,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
                         </svg>
                     }
                 </button>
+
                 <button
                     onClick={() => deletePost()}
                 >
