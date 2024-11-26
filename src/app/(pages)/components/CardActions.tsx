@@ -1,11 +1,13 @@
 "use client"
 import Cookies from "js-cookie";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 export default function CardActions({id, isShown, setToDeleteAction}: {id: string, isShown: boolean, setToDeleteAction: React.Dispatch<React.SetStateAction<string>>}) {
     const [isClient, setIsClient] = useState(false);
     const [eyeOpen, setEyeOpen] = useState(isShown)
-
+    const { accessToken } = useContext(LoginContext)
+    
     useEffect(() => {
         setIsClient(true)
     }, [])
@@ -37,7 +39,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
         setEyeOpen(!eyeOpen)
     }
 
-    return Cookies.get("accessToken") !== undefined
+    return accessToken
         ? <div className="flex flex-col space-x-2 justify-center">
             <button
                 className="flex"
