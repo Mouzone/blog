@@ -1,7 +1,7 @@
 import Link from "next/link";
 import CardActions from "@/app/(pages)/components/CardActions.tsx";
 
-export function Card({
+export default function Card({
                          id,
                          title,
                          description,

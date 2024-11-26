@@ -1,5 +1,9 @@
-import {Card} from "@/app/(pages)/components/Card.tsx";
-import Cookies from "js-cookie"
+"use client";
+
+import {useState, useEffect, useContext} from 'react';
+import Cookies from 'js-cookie';
+import Card from "./components/Card"
+import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 interface Post {
     id: string,
@@ -9,38 +13,49 @@ interface Post {
     isShown: boolean,
 }
 
-export default async function Posts() {
-    const response = await fetch("http://localhost:3000/api/posts", {
-        headers: {
-            authorization: `Bearer ${Cookies.get("accessToken")}`
+export default function Posts() {
+    const [posts, setPosts] = useState<Post[]>([]);
+    const {accessToken} = useContext(LoginContext)
+    useEffect(() => {
+        async function fetchPosts() {
+            const response = await fetch("/api/posts", {
+                headers: {
+                    authorization: `Bearer ${accessToken}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch posts");
+            }
+
+            const data: { posts: Post[] } = await response.json();
+            setPosts(data.posts);
         }
-    })
-    const data: { posts: Post[] } = await response.json()
-    const posts = data["posts"]
+
+        fetchPosts();
+    }, [accessToken]);
 
     return (
         <div className="bg-white py-24 sm:pt-12 pb-24">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0">
-                    <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">My Blog</h2>
+                    <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                        My Blog
+                    </h2>
                 </div>
                 <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 border-t border-gray-200 pt-6 sm:pt-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {
-                        posts.map(({ id, title, description, createdAt, isShown}) => (
-                            <Card
-                                key={id}
-                                id={id}
-                                title={title}
-                                description={description}
-                                createdAt={createdAt}
-                                isShown={isShown}
-                            />
-                            )
-                        )
-                    }
+                    {posts.map(({ id, title, description, createdAt, isShown}) => (
+                        <Card
+                            key={id}
+                            id={id}
+                            title={title}
+                            description={description}
+                            createdAt={createdAt}
+                            isShown={isShown}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
