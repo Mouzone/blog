@@ -39,8 +39,10 @@ export default function PostForm() {
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            const response = postId
-                ? await fetch(`/api/posts/${postId}/update`,
+            const response = await fetch(
+                postId
+                    ? `/api/posts/${postId}/update`
+                    : `/api/posts/create`,
                 {
                     method: "POST",
                     headers: {
@@ -52,18 +54,6 @@ export default function PostForm() {
                         content
                     })
                 })
-                : await fetch(`/api/posts/create`,
-                    {
-                        method: "POST",
-                        headers: {
-                            authorization: `Bearer ${Cookies.get("accessToken")}`
-                        },
-                        body: JSON.stringify({
-                            title,
-                            description,
-                            content
-                        })
-                    })
             const data = await response.json()
             if (data["error"]) {
                 throw new Error("Error creating new point")
