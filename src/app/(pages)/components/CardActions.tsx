@@ -2,7 +2,7 @@
 import Cookies from "js-cookie";
 import {useEffect, useState} from "react";
 
-export default function CardActions({id, isShown}: {id: string, isShown: boolean}) {
+export default function CardActions({id, isShown, setToDeleteAction}: {id: string, isShown: boolean, setToDeleteAction: React.Dispatch<React.SetStateAction<string>>}) {
     const [isClient, setIsClient] = useState(false);
     const [eyeOpen, setEyeOpen] = useState(isShown)
 
@@ -21,6 +21,7 @@ export default function CardActions({id, isShown}: {id: string, isShown: boolean
                 authorization: `Bearer ${Cookies.get("accessToken")}`
             },
         })
+        setToDeleteAction(id)
         console.log(await response.json())
     }
 

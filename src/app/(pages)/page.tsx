@@ -14,9 +14,18 @@ interface Post {
 
 export default function Posts() {
     const [posts, setPosts] = useState<Post[]>([])
+    const [toDelete, setToDelete] = useState(null)
     const {accessToken} = useContext(LoginContext)
     useEffect(() => {
         async function fetchPosts() {
+            if (toDelete) {
+                await fetch(`/api/posts/${toDelete}/delete`, {
+                    headers: {
+                        authorization: `Bearer ${accessToken}`
+                    }
+                })
+                setToDelete(null)
+            }
             const response = await fetch("/api/posts", {
                 headers: {
                     authorization: `Bearer ${accessToken}`
@@ -32,7 +41,8 @@ export default function Posts() {
         }
 
         fetchPosts()
-    }, [accessToken])
+    }, [accessToken, toDelete])
+
 
     return (
         <div className="bg-white py-24 sm:pt-12 pb-24">
@@ -51,6 +61,7 @@ export default function Posts() {
                             description={description}
                             createdAt={createdAt}
                             isShown={isShown}
+                            setToDelete = {setToDelete}
                         />
                     ))}
                 </div>

@@ -6,13 +6,15 @@ export default function Card({
                          title,
                          description,
                          createdAt,
-                         isShown
+                         isShown,
+    setToDelete,
                      }: {
     id: string,
     title: string,
     description: string,
     createdAt: string,
-    isShown: boolean
+    isShown: boolean,
+    setToDelete: React.Dispatch<React.SetStateAction<string>>
 }) {
     const date = new Date(createdAt);
     const formatted = date.toLocaleDateString('en-US', {
@@ -38,7 +40,7 @@ export default function Card({
                     <p className="mt-5 line-clamp-3 text-sm/6 text-gray-600">{description}</p>
                 </div>
             </article>
-            <CardActions id={id} isShown={isShown}/>
+            <CardActions id={id} isShown={isShown} setToDeleteAction={setToDelete}/>
         </div>
     );
 }
