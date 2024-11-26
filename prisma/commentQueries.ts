@@ -14,6 +14,9 @@ export function findComments(postId: number) {
     return prisma.comment.findMany({
         where: {
             postId,
+        },
+        orderBy: {
+            createdAt: "asc",
         }
     })
 }
