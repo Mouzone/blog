@@ -1,5 +1,5 @@
 "use client"
-import React, {type FormEvent, useContext, useState} from "react";
+import React, {type FormEvent, useContext, useEffect, useState} from "react";
 import { useRouter } from 'next/navigation'
 import Cookies from 'js-cookie'
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
@@ -7,6 +7,12 @@ import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 export default function Login() {
     const router = useRouter()
     const { accessToken, setAccessToken } = useContext(LoginContext);
+
+    useEffect(() => {
+        if (accessToken) {
+            router.push("/")
+        }
+    }, [accessToken, router])
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

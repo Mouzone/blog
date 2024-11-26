@@ -1,13 +1,22 @@
 "use client"
-import React, {type FormEvent, useState} from "react";
+import React, {type FormEvent, useContext, useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import Cookies from 'js-cookie'
+import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 export default function NewPage() {
+    const { accessToken } = useContext(LoginContext)
+    const router = useRouter()
+
+    useEffect(() => {
+        if (!accessToken) {
+            router.push("/")
+        }
+    }, [accessToken, router])
+
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [content, setContent] = useState("")
-    const router = useRouter()
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
