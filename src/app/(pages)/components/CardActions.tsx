@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 
 export default function CardActions({id, isShown}: {id: string, isShown: boolean}) {
     const [isClient, setIsClient] = useState(false);
+    const [eyeOpen, setEyeOpen] = useState(isShown)
 
     useEffect(() => {
         setIsClient(true)
@@ -33,6 +34,7 @@ export default function CardActions({id, isShown}: {id: string, isShown: boolean
                 isShown: !isShown,
             })
         })
+        setEyeOpen(!eyeOpen)
         console.log(await response.json())
     }
 
@@ -43,7 +45,7 @@ export default function CardActions({id, isShown}: {id: string, isShown: boolean
                     className="text-gray-600 hover:text-gray-900 focus:outline-none"
                     onClick={() => toggleShown()}
                 >
-                    {isShown
+                    {eyeOpen
                         ? <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24">
                             <path
                                 d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z"/>
@@ -55,10 +57,9 @@ export default function CardActions({id, isShown}: {id: string, isShown: boolean
                     }
                 </button>
                 <button
-                    className="text-red-600 hover:text-red-900 focus:outline-none"
                     onClick={() => deletePost()}
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-600 hover:text-red-900 focus:outline-none" viewBox="0 0 24 24">
                         <path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
                     </svg>
                 </button>

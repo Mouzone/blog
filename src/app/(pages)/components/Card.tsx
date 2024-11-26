@@ -21,7 +21,7 @@ export default function Card({
         day: 'numeric'
     })
     return (
-        <div key={id} className="flex">
+        <div key={id} className="flex justify-between">
             <article className="flex max-w-xl flex-col items-start justify-between">
                 <div className="flex items-center gap-x-4 text-xs">
                     <time dateTime={formatted} className="text-gray-500">
