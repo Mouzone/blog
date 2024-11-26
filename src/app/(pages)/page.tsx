@@ -26,7 +26,7 @@ export default function Posts() {
                 })
                 setToDelete("")
             }
-            const response = await fetch(`/api/posts?skip=${0}&take=${10}`, {
+            const response = await fetch(`/api/posts?skip=${0}&take=${5}`, {
                 headers: {
                     authorization: `Bearer ${accessToken}`
                 }
