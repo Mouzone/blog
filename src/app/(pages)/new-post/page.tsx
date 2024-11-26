@@ -4,7 +4,7 @@ import {useRouter} from "next/navigation";
 import Cookies from 'js-cookie'
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
-export default function NewPage() {
+export default function NewPost() {
     const { accessToken } = useContext(LoginContext)
     const router = useRouter()
 
