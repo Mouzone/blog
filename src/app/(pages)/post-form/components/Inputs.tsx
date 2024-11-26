@@ -1,5 +1,5 @@
-import TextInput from "@/app/(pages)/edit/components/TextInput.tsx";
-import TextArea from "@/app/(pages)/edit/components/TextArea.tsx";
+import TextInput from "@/app/(pages)/post-form/components/TextInput.tsx";
+import TextArea from "@/app/(pages)/post-form/components/TextArea.tsx";
 import React from "react";
 
 export default function Inputs({title, setTitle, description, setDescription, content, setContent}:

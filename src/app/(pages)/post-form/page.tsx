@@ -1,12 +1,12 @@
 "use client"
 import React, {type FormEvent, useContext, useEffect, useState} from "react";
-import {useRouter, useSearchParams} from "next/navigation";
-import Cookies from 'js-cookie'
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
-import Inputs from "@/app/(pages)/edit/components/Inputs.tsx";
-import PostButtons from "@/app/(pages)/edit/components/PostButtons.tsx";
+import {useRouter, useSearchParams} from "next/navigation";
+import Cookies from "js-cookie";
+import Inputs from "@/app/(pages)/post-form/components/Inputs.tsx";
+import PostButtons from "@/app/(pages)/post-form/components/PostButtons.tsx";
 
-export default function EditPost() {
+export default function PostForm() {
     const { accessToken } = useContext(LoginContext)
 
     const router = useRouter()
@@ -31,13 +31,16 @@ export default function EditPost() {
             setContent(post.content)
         }
 
-        fetchPost()
+        if (postId) {
+            fetchPost()
+        }
     }, [postId, accessToken, router])
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            const response = await fetch(`/api/posts/${postId}/update`,
+            const response = postId
+                ? await fetch(`/api/posts/${postId}/update`,
                 {
                     method: "POST",
                     headers: {
@@ -49,6 +52,18 @@ export default function EditPost() {
                         content
                     })
                 })
+                : await fetch(`/api/posts/create`,
+                    {
+                        method: "POST",
+                        headers: {
+                            authorization: `Bearer ${Cookies.get("accessToken")}`
+                        },
+                        body: JSON.stringify({
+                            title,
+                            description,
+                            content
+                        })
+                    })
             const data = await response.json()
             if (data["error"]) {
                 throw new Error("Error creating new point")
@@ -58,6 +73,7 @@ export default function EditPost() {
             console.error("Error sending request", error)
         }
     }
+
     return (
         <form onSubmit={onSubmit} className="mx-12">
             <Inputs
@@ -66,7 +82,7 @@ export default function EditPost() {
                 content={content} setContent={setContent}
             />
 
-            <PostButtons text="update"/>
+            <PostButtons text={postId ? "Update": "Submit"}/>
         </form>
     )
 }
