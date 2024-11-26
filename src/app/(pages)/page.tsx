@@ -1,7 +1,6 @@
 "use client";
 
 import {useState, useEffect, useContext} from 'react';
-import Cookies from 'js-cookie';
 import Card from "./components/Card"
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
@@ -14,7 +13,7 @@ interface Post {
 }
 
 export default function Posts() {
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[]>([])
     const {accessToken} = useContext(LoginContext)
     useEffect(() => {
         async function fetchPosts() {
@@ -22,18 +21,18 @@ export default function Posts() {
                 headers: {
                     authorization: `Bearer ${accessToken}`
                 }
-            });
+            })
 
             if (!response.ok) {
-                throw new Error("Failed to fetch posts");
+                throw new Error("Failed to fetch posts")
             }
 
-            const data: { posts: Post[] } = await response.json();
-            setPosts(data.posts);
+            const data: { posts: Post[] } = await response.json()
+            setPosts(data.posts)
         }
 
-        fetchPosts();
-    }, [accessToken]);
+        fetchPosts()
+    }, [accessToken])
 
     return (
         <div className="bg-white py-24 sm:pt-12 pb-24">
@@ -57,5 +56,5 @@ export default function Posts() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
