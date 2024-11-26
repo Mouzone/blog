@@ -40,7 +40,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
     }
 
     return accessToken
-        ? <div className="flex flex-col ">
+        ? <div className="flex flex-col justify-center">
             <button
                 className="flex"
                 onClick={() => toggleShown()}
