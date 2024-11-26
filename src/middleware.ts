@@ -7,6 +7,7 @@ export const config = {
         '/api/posts/create',
         '/api/posts/:path*/delete',
         '/api/posts/:path*/update',
+        '/api/posts/:path*/toggle-shown',
     ]
 }
 

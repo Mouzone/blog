@@ -1,29 +1,43 @@
 "use client"
 import React, {type FormEvent, useContext, useEffect, useState} from "react";
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import Cookies from 'js-cookie'
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 import Inputs from "@/app/(pages)/edit/components/Inputs.tsx";
 import PostButtons from "@/app/(pages)/edit/components/PostButtons.tsx";
 
-export default function NewPost() {
+export default function EditPost() {
     const { accessToken } = useContext(LoginContext)
-    const router = useRouter()
 
-    useEffect(() => {
-        if (!accessToken) {
-            router.push("/")
-        }
-    }, [accessToken, router])
+    const router = useRouter()
+    const searchParams = useSearchParams()
+    const postId = searchParams.get('postId')
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [content, setContent] = useState("")
 
+    useEffect(() => {
+        if (!accessToken) {
+            router.push("/")
+        }
+
+        async function fetchPost() {
+            const response = await fetch(`http://localhost:3000/api/posts/${postId}`)
+            const { post } = await response.json()
+
+            setTitle(post.title)
+            setDescription(post.description)
+            setContent(post.content)
+        }
+
+        fetchPost()
+    }, [postId, accessToken, router])
+
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault()
         try {
-            const response = await fetch("/api/posts/create",
+            const response = await fetch(`/api/posts/${postId}/update`,
                 {
                     method: "POST",
                     headers: {
