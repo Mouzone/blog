@@ -68,21 +68,23 @@ export default function Posts() {
                         />
                     ))}
                 </div>
-                <div className="mx-auto max-w-2xl pt-5 flex">
-                    { skip === 0 || <button
-                        className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"
+                <div className="mx-auto max-w-2xl pt-10 flex justify-between">
+                    <button
+                        className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium
+                                    disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500"
                         onClick={() => setSkip(skip - 5)}
+                        disabled = {skip === 0}
                     >
                         Prev
                     </button>
-                    }
-                    { posts.length == 5 && <button
-                            className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"
-                            onClick={() => setSkip(skip + 5)}
-                        >
-                            Next
-                        </button>
-                    }
+                    <button
+                        className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium
+                                    disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500"
+                        onClick={() => setSkip(skip + 5)}
+                        disabled={ posts.length < 5 }
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
