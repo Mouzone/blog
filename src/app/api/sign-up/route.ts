@@ -1,9 +1,10 @@
 import {createAccount, findAccountByUsername} from "../../../../prisma/accountQueries.ts";
 
-export default async function POST(request: Request) {
+export async function POST(request: Request) {
     try {
         const {username, password} = await request.json()
-        if (!await findAccountByUsername(username)) {
+        console.log(username, password)
+        if (await findAccountByUsername(username)) {
             return Response.json({
                 error: true,
                 status: 503,
