@@ -32,6 +32,7 @@ export default function Signup() {
                 setError(data.message)
                 setUsername('')
                 setPassword('')
+                setConfirmPassword('')
             } else {
                 router.push("/login")
             }
@@ -40,6 +41,7 @@ export default function Signup() {
             setError(`${error}`)
             setUsername('')
             setPassword('')
+            setConfirmPassword('')
         }
     }
 
