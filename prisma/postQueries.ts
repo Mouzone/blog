@@ -1,9 +1,10 @@
 import { PrismaClient } from "prisma/prisma-client"
 const prisma = new PrismaClient()
 
-export function createPost(title: string, description: string, content: string) {
+export function createPost(accountId: number, title: string, description: string, content: string) {
     return prisma.post.create({
         data: {
+            accountId,
             title,
             description,
             content

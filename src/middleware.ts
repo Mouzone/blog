@@ -1,4 +1,4 @@
-import {NextResponse} from "next/server";
+import {type NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
 import { jwtVerify} from "jose";
 
@@ -11,7 +11,7 @@ export const config = {
     ]
 }
 
-export async function middleware() {
+export async function middleware(request: NextRequest) {
     const headersList = await headers()
     const bearerHeader = headersList.get("authorization")
 
@@ -20,12 +20,19 @@ export async function middleware() {
         const bearerToken = bearer[1]
 
         try {
-            await jwtVerify(
+            const { payload } = await jwtVerify(
                 bearerToken,
                 new TextEncoder().encode(process.env["JWT_KEY"])
             )
 
-            return NextResponse.next()
+            const response = NextResponse.next({
+                request: {
+                    headers: new Headers(request.headers)
+                }
+            })
+
+            response.headers.set('accountId', payload["accountId"] as string)
+            return response
 
         } catch(error) {
             return NextResponse.json({
