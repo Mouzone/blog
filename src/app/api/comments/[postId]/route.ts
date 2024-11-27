@@ -1,4 +1,4 @@
-import {findComments} from "../../../../../prisma/commentQueries.ts";
+import {countComments, findComments} from "../../../../../prisma/commentQueries.ts";
 import type {NextRequest} from "next/server";
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ postId: string }> }) {
@@ -20,11 +20,13 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         const skip = parseInt(skipParam)
         const take = parseInt(takeParam)
         const comments = await findComments(parseInt(postId), skip, take)
+        const totalComments = await countComments(parseInt(postId))
 
         return Response.json({
             error: false,
             status: 200,
             comments,
+            totalComments,
             message: "success"
         })
     } catch(error) {

@@ -23,6 +23,14 @@ export function findComments(postId: number, skip: number, take: number) {
     })
 }
 
+export function countComments(postId: number) {
+    return prisma.comment.count({
+        where: {
+            postId
+        }
+    })
+}
+
 export function deleteComments(postId: number) {
     return prisma.comment.deleteMany({
         where: {
