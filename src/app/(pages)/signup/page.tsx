@@ -13,19 +13,19 @@ export default function Signup() {
         e.preventDefault()
         try {
             const response = await fetch(
-                '/api/sign-up',
+                'http://localhost:3000/api/sign-up',
                 {
                     method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({ username, password }),
                 }
             )
-            console.log(response)
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            const data = await response.json()
 
-            if (response.status !== 200) {
+            if (data.status !== 200) {
                 throw new Error(`Username taken`)
             }
             else {

@@ -25,15 +25,19 @@ export default function Login() {
                 '/api/log-in',
                 {
                     method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({ username, password }),
                 }
             )
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json()
+
+            if (!data.status) {
+                throw new Error(data.error)
             }
 
-            const data = await response.json()
             if (!data["accessToken"]) {
                 throw new Error(`Invalid credentials`)
             }
