@@ -1,9 +1,10 @@
 import { getToken } from "../../../../utility/getToken.ts";
+import {findAccountByUsernameAndPassword} from "../../../../prisma/accountQueries.ts";
 
 export async function POST(request: Request) {
     const { username, password } = await request.json()
-
-    if (username !== process.env["USERNAME"] && password !== process.env["PASSWORD"]) {
+    const account = await findAccountByUsernameAndPassword(username, password)
+    if (!account) {
         return Response.json({
             error: true,
             status: 401,
@@ -12,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const accessToken = await getToken({ })
+        const accessToken = await getToken({ id: account.id})
 
         return Response.json({
             error: false,

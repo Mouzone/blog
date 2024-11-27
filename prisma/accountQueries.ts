@@ -17,3 +17,12 @@ export function findAccountByUsername(username: string) {
         }
     })
 }
+
+export function findAccountByUsernameAndPassword(username: string, password: string) {
+    return prisma.account.findUnique({
+        where: {
+            username,
+            password,
+        }
+    })
+}
