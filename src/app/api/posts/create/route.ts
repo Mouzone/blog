@@ -11,7 +11,7 @@ export async function POST(request: Request) {
             message: "Missing account details"
         })
     }
-    console.log(accountId)
+
     const { title, description, content } = await request.json()
 
     const {id} = await createPost(parseInt(accountId), title, description, content)

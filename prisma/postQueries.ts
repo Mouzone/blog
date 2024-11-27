@@ -12,21 +12,25 @@ export function createPost(accountId: number, title: string, description: string
     })
 }
 
-export function findPostsAll(skip: number, take: number) {
+export function findPostsAll(accountId: number, skip: number, take: number) {
     return prisma.post.findMany({
         skip,
         take,
+        where: {
+            accountId
+        },
         orderBy: {
             createdAt: 'desc'
         }
     })
 }
 
-export function findPostsShown(skip: number, take: number) {
+export function findPostsShown(accountId: number, skip: number, take: number) {
     return prisma.post.findMany({
         skip,
         take,
         where: {
+            accountId,
             isShown: true,
         },
         orderBy: {
@@ -43,13 +47,18 @@ export function findPost(id: number) {
     })
 }
 
-export function countPostsAll() {
-    return prisma.post.count()
-}
-
-export function countsPostsShown() {
+export function countPostsAll(accountId: number) {
     return prisma.post.count({
         where: {
+            accountId,
+        }
+    })
+}
+
+export function countsPostsShown(accountId: number) {
+    return prisma.post.count({
+        where: {
+            accountId,
             isShown: true
         }
     })
