@@ -15,7 +15,10 @@ interface Post {
 export default function Posts() {
     const [posts, setPosts] = useState<Post[]>([])
     const [toDelete, setToDelete] = useState("")
+    const [skip, setSkip] = useState(0)
+
     const {accessToken} = useContext(LoginContext)
+
     useEffect(() => {
         async function fetchPosts() {
             if (toDelete) {
@@ -26,7 +29,7 @@ export default function Posts() {
                 })
                 setToDelete("")
             }
-            const response = await fetch(`/api/posts?skip=${0}&take=${5}`, {
+            const response = await fetch(`/api/posts?skip=${skip}&take=5`, {
                 headers: {
                     authorization: `Bearer ${accessToken}`
                 }
@@ -41,7 +44,7 @@ export default function Posts() {
         }
 
         fetchPosts()
-    }, [accessToken, toDelete])
+    }, [skip, accessToken, toDelete])
 
 
     return (
@@ -64,6 +67,22 @@ export default function Posts() {
                             setToDelete = {setToDelete}
                         />
                     ))}
+                </div>
+                <div className="mx-auto max-w-2xl pt-5 flex">
+                    { skip === 0 || <button
+                        className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"
+                        onClick={() => setSkip(skip - 5)}
+                    >
+                        Prev
+                    </button>
+                    }
+                    { posts.length == 5 && <button
+                            className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium"
+                            onClick={() => setSkip(skip + 5)}
+                        >
+                            Next
+                        </button>
+                    }
                 </div>
             </div>
         </div>
