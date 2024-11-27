@@ -47,24 +47,20 @@ export default function Login() {
             console.error("Login failed", error)
         }
     }
-    return (
-        <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <Header text="Log in to your account"/>
+    return <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <Header text="Log in to your account"/>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        <Input type="username" value={username} update={setUsername}/>
-                        <Input type="password" value={password} update={setPassword}/>
-                        <button
-                            type="submit"
-                            className="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
-                        >
-                            Log in
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </>
-    )
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <Input type="username" value={username} update={setUsername}/>
+                <Input type="password" value={password} update={setPassword}/>
+                <button
+                    type="submit"
+                    className="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                >
+                    Log in
+                </button>
+            </form>
+        </div>
+    </div>
 }

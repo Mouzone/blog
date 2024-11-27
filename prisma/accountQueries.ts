@@ -13,7 +13,7 @@ export function createAccount(username: string, password: string) {
 export function findAccountByUsername(username: string) {
     return prisma.account.findUnique({
         where: {
-            username
+            username,
         }
     })
 }

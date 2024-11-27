@@ -3,8 +3,8 @@ import {createAccount, findAccountByUsername} from "../../../../prisma/accountQu
 export async function POST(request: Request) {
     try {
         const {username, password} = await request.json()
-        console.log(username, password)
-        if (await findAccountByUsername(username)) {
+        const account = await findAccountByUsername(username)
+        if (account) {
             return Response.json({
                 error: true,
                 status: 503,
