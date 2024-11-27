@@ -83,7 +83,7 @@ export default function Posts() {
                         className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium
                                     disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500"
                         onClick={() => setSkip(skip + 5)}
-                        disabled={ totalPosts >= skip + 5 }
+                        disabled={ totalPosts <= skip + 5 }
                     >
                         Next
                     </button>
