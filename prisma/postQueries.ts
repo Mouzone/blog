@@ -42,6 +42,18 @@ export function findPost(id: number) {
     })
 }
 
+export function countPostsAll() {
+    return prisma.post.count()
+}
+
+export function countsPostsShown() {
+    return prisma.post.count({
+        where: {
+            isShown: true
+        }
+    })
+}
+
 export function updatePost(id: number, title: string, description: string, content: string, isShown: boolean) {
     return prisma.post.update({
         where: {

@@ -1,4 +1,4 @@
-import { findPostsAll, findPostsShown } from "../../../../prisma/postQueries.ts";
+import {countPostsAll, countsPostsShown, findPostsAll, findPostsShown} from "../../../../prisma/postQueries.ts";
 import { headers } from "next/headers";
 import { jwtVerify } from "jose";
 import {NextRequest} from "next/server";
@@ -26,10 +26,12 @@ export async function GET(request: NextRequest) {
         if (!bearerHeader) {
 
             const posts = await findPostsShown(skip, take)
+            const totalPosts = await countsPostsShown()
             return Response.json({
                 error: false,
                 status: 200,
                 posts,
+                totalPosts,
                 message: "Retrieved public posts"
             })
         }
@@ -47,20 +49,24 @@ export async function GET(request: NextRequest) {
 
             // Token valid - return all posts
             const posts = await findPostsAll(skip, take)
+            const totalPosts = await countPostsAll()
             return Response.json({
                 error: false,
                 status: 200,
                 posts,
+                totalPosts,
                 message: "Retrieved all posts"
             })
 
         } catch(tokenError) {
             // Invalid token - return public posts
             const posts = await findPostsShown(skip, take)
+            const totalPosts = await countsPostsShown()
             return Response.json({
                 error: false,
                 status: 200,
                 posts,
+                totalPosts,
                 message: `Retrieved public posts due to invalid token: ${tokenError}`
             })
         }

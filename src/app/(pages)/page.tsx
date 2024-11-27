@@ -14,6 +14,7 @@ interface Post {
 
 export default function Posts() {
     const [posts, setPosts] = useState<Post[]>([])
+    const [totalPosts, setTotalPosts] = useState(0)
     const [toDelete, setToDelete] = useState("")
     const [skip, setSkip] = useState(0)
 
@@ -39,8 +40,9 @@ export default function Posts() {
                 throw new Error("Failed to fetch posts")
             }
 
-            const data: { posts: Post[] } = await response.json()
+            const data: { posts: Post[], totalPosts: number } = await response.json()
             setPosts(data.posts)
+            setTotalPosts(data.totalPosts)
         }
 
         fetchPosts()
@@ -81,7 +83,7 @@ export default function Posts() {
                         className="text-white bg-purple-900 rounded-md px-3 py-2 text-sm font-medium
                                     disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500"
                         onClick={() => setSkip(skip + 5)}
-                        disabled={ posts.length < 5 }
+                        disabled={ totalPosts >= skip + 5 }
                     >
                         Next
                     </button>
