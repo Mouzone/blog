@@ -1,20 +1,11 @@
 "use client"
-import React, {type FormEvent, useContext, useEffect, useState} from "react";
+import React, {type FormEvent, useState} from "react";
 import { useRouter } from 'next/navigation'
-import Cookies from 'js-cookie'
-import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 import Header from "@/app/(pages)/components/Header.tsx";
 import Input from "@/app/(pages)/components/Input.tsx";
 
-export default function Login() {
+export default function Signup() {
     const router = useRouter()
-    const { accessToken, setAccessToken } = useContext(LoginContext);
-
-    useEffect(() => {
-        if (accessToken) {
-            router.push("/")
-        }
-    }, [accessToken, router])
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -22,7 +13,7 @@ export default function Login() {
         e.preventDefault()
         try {
             const response = await fetch(
-                '/api/log-in',
+                '/api/sign-up',
                 {
                     method: "POST",
                     body: JSON.stringify({ username, password }),
@@ -33,24 +24,18 @@ export default function Login() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            const data = await response.json()
-            if (!data["accessToken"]) {
-                throw new Error(`Invalid credentials`)
+            if (response.status !== 200) {
+                throw new Error(`Username taken`)
             }
-
-            Cookies.set('accessToken', data["accessToken"])
-            if (!accessToken) {
-                setAccessToken(data["accessToken"])
-            }
-            router.push("/")
+            router.push("/login")
         } catch(error) {
-            console.error("Login failed", error)
+            console.error("Signup failed", error)
         }
     }
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <Header text="Log in to your account"/>
+                <Header text="Sign up for a new account"/>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -60,7 +45,7 @@ export default function Login() {
                             type="submit"
                             className="flex w-full justify-center rounded-md bg-purple-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
                         >
-                            Log in
+                            Sign Up
                         </button>
                     </form>
                 </div>
