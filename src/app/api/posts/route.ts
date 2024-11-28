@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
                     status: 200,
                     posts,
                     totalPosts,
-                    message: "Retrieved all posts"
+                    message: "Retrieved all shown posts"
                 })
             }
         } else {
@@ -71,14 +71,21 @@ export async function GET(request: NextRequest) {
         }
     } else {
         if (accountIdParam) {
+            const accountId = parseInt(accountIdParam)
             const posts = await findPostsShown(accountId, skip, take)
-            const totalPosts = await countsPostsShown(accountId)
+            const totalPosts = await countPostsShown(accountId)
             return Response.json({
                 error: false,
                 status: 200,
                 posts,
                 totalPosts,
-                message: "Retrieved public posts"
+                message: "Retrieved shown posts"
+            })
+        } else {
+            return Response.json({
+                error: true,
+                status: 403,
+                message: "No credentials and no target"
             })
         }
     }
