@@ -1,5 +1,4 @@
-import Input from "@/app/(pages)/components/Input.tsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
 
 interface Account {
@@ -22,16 +21,23 @@ export default function Search(){
     }, [])
 
     const filteredAccounts = accounts.filter(account => account.username.includes(searchTerm))
-    return <div>
-        <Input type="search" value={searchTerm} update={setSearchTerm}/>
-        <div className="absolute bg-white">
+    return <div className="relative w-60">
+        <input
+            id="search"
+            name="search"
+            type="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="block w-full rounded-md border-0 px-2.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm/6"
+        />
+        <div className="absolute flex flex-col z-10 w-full bg-white shadow-md max-h-60 overflow-y-auto rounded-md mt-1">
             {searchTerm && accounts && filteredAccounts.map(account => {
                 return <Link
                     key={account.id}
                     href={`/account/${account.id}`}
-                    className="p-2"
+                    className="p-2 hover:bg-gray-100"
                     onClick={() => setSearchTerm("")}
-                    >
+                >
                     {account.username}
                 </Link>
             })}
