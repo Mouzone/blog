@@ -24,7 +24,6 @@ export async function GET(request: NextRequest) {
     try {
         // No token case
         if (!bearerHeader) {
-
             const posts = await findPostsShown(skip, take)
             const totalPosts = await countsPostsShown()
             return Response.json({
