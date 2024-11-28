@@ -21,7 +21,10 @@ export default function NavBar() {
         <Disclosure as="nav" className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
-                    { accessToken ? <StyledLink href="/account/own" text="Posts"/> : <StyledLink href="/" text="Home"/> }
+                    <div className="flex gap-3">
+                        <StyledLink href="/" text="Home"/>
+                        { accessToken && <StyledLink href="/account/own" text="Posts"/> }
+                    </div>
                     <Search/>
                     <UserActions/>
                 </div>
