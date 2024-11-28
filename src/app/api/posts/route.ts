@@ -5,7 +5,9 @@ import {NextRequest} from "next/server";
 
 export async function GET(request: NextRequest) {
     const headersList = await headers()
-    const bearerHeader = headersList.get("authorization")
+    const bearerHeader = headersList.get("authorization") === "Bearer undefined"
+        ? null
+        : headersList.get("authorization")
 
     const searchParams = request.nextUrl.searchParams
     const accountIdParam = searchParams.get("accountId")
