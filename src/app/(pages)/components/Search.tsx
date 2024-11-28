@@ -13,11 +13,7 @@ export default function Search(){
     const {accessToken} = useContext(LoginContext)
     useEffect(() => {
         async function fetchAccounts() {
-            const response = await fetch('/api/accounts', {
-                headers: {
-                    authorization: `Bearer ${accessToken}`
-                }
-            })
+            const response = await fetch('/api/accounts')
             const data = await response.json()
             const accounts = data["accounts"]
             setAccounts(accounts)
