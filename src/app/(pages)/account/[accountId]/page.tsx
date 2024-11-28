@@ -49,7 +49,7 @@ export default function Posts() {
         }
 
         fetchPosts()
-    }, [skip, accessToken, toDelete])
+    }, [skip, toDelete])
 
 
     return (

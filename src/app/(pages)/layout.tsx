@@ -18,8 +18,8 @@ export default function RootLayout({
 }>) {
 
     return (
-      <html lang="en" className="h-full">
-        <body className={`${inter.className} antialiased h-full`}>
+      <html lang="en">
+        <body className={`${inter.className} antialiased h-screen`}>
           <LoginContextProvider>
             <NavBar/>
             {children}
