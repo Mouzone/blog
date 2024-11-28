@@ -14,7 +14,7 @@ export default function Login() {
 
     useEffect(() => {
         if (accessToken) {
-            router.push("/")
+            router.push("/account/own")
         }
     }, [accessToken, router])
 
@@ -52,7 +52,7 @@ export default function Login() {
             Cookies.set('accessToken', data["accessToken"])
             setAccessToken(data["accessToken"])
 
-            router.push("/")
+            return router.push("/account/own")
         } catch(error) {
             setError(`${error}`)
             setUsername('')
