@@ -59,7 +59,7 @@ export default function Login() {
             setPassword('')
         }
     }
-    return <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    return <div className="flex h-3/4 flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <Header text="Log in to your account"/>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
