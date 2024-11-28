@@ -7,7 +7,7 @@ interface Post {
     comments: [ Comment ]
 }
 
-import Comments from "@/app/(pages)/[postId]/components/Comments.tsx"
+import Comments from "@/app/(pages)/post/[postId]/components/Comments.tsx"
 export default async function Post({ params }:{ params: Promise<{ postId: string }> }) {
     const postId = (await params).postId
     const response = await fetch(`http://localhost:3000/api/posts/${postId}`)

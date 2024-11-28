@@ -1,7 +1,7 @@
 "use client"
 import {useRouter} from "next/navigation";
 import React, {useContext, useState, useEffect} from "react";
-import {StyledLink} from "@/app/(pages)/[postId]/components/StyledLink.tsx";
+import {StyledLink} from "@/app/(pages)/post/[postId]/components/StyledLink.tsx";
 import Cookies from "js-cookie"
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx"
 

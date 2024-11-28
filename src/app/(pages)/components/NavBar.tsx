@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react'
 import React from "react";
 import {UserActions} from "@/app/(pages)/components/UserActions.tsx";
-import {StyledLink} from "@/app/(pages)/[postId]/components/StyledLink.tsx";
+import {StyledLink} from "@/app/(pages)/post/[postId]/components/StyledLink.tsx";
 export default function NavBar() {
     return (
         <Disclosure as="nav" className="bg-gray-800">
