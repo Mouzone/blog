@@ -2,9 +2,10 @@
 
 # Login and get token to pass for each request
 POST http://localhost:3000/api/log-in
-[FormParams]
-username: deez
-password: nuts
+{
+    "username": "deez",
+    "password": "nuts"
+}
 HTTP 200
 [Captures]
 token: jsonpath "$.accessToken"
@@ -14,6 +15,7 @@ POST http://localhost:3000/api/posts/create
 Authorization: Bearer {{token}}
 {
   "title": "title",
+  "description": "description",
   "content": "content"
 }
 HTTP 200
@@ -37,7 +39,16 @@ POST http://localhost:3000/api/posts/{{postId}}/update
 Authorization: Bearer {{token}}
 {
   "title": "title2",
-  "content": "content2",
+  "content": "content2"
+}
+HTTP 200
+[Asserts]
+jsonpath "$.status" == 200
+
+# Update post shown status
+POST http://localhost:3000/api/posts/{{postId}}/toggle-shown
+Authorization: Bearer {{token}}
+{
   "isShown": false
 }
 HTTP 200
@@ -55,12 +66,12 @@ jsonpath "$.post.content" == "content2"
 jsonpath "$.post.isShown" == false
 
 # Check mass retrieval works
-GET http://localhost:3000/api/posts
+GET http://localhost:3000/api/posts?accountId=1&skip=0&take=5
 Authorization: Bearer {{token}}
 HTTP 200
 [Asserts]
 jsonpath "$.status" == 200
-jsonpath "$.posts" count == 1
+jsonpath "$.posts" count == 5
 
 # Delete the post that was created before
 POST http://localhost:3000/api/posts/{{postId}}/delete
