@@ -1,7 +1,7 @@
 "use client";
 
 import {useState, useEffect, useContext} from 'react';
-import Card from "../components/Card.tsx"
+import Card from "../../components/Card.tsx"
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 interface Post {
