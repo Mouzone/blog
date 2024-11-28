@@ -8,10 +8,11 @@ export async function GET(request: NextRequest) {
     const bearerHeader = headersList.get("authorization")
 
     const searchParams = request.nextUrl.searchParams
-    const skipParam = searchParams.get("skip");
-    const takeParam = searchParams.get("take");
+    const accountIdParam = searchParams.get("accountId")
+    const skipParam = searchParams.get("skip")
+    const takeParam = searchParams.get("take")
 
-    if (!skipParam || !takeParam) {
+    if (!skipParam || !takeParam || ! accountIdParam) {
         return Response.json({
             error: true,
             status: 500,
@@ -19,13 +20,14 @@ export async function GET(request: NextRequest) {
         });
     }
 
-    const skip = parseInt(skipParam);
-    const take = parseInt(takeParam);
+    const accountId = parseInt(accountIdParam)
+    const skip = parseInt(skipParam)
+    const take = parseInt(takeParam)
     try {
         // No token case
         if (!bearerHeader) {
-            const posts = await findPostsShown(skip, take)
-            const totalPosts = await countsPostsShown()
+            const posts = await findPostsShown(accountId, skip, take)
+            const totalPosts = await countsPostsShown(accountId)
             return Response.json({
                 error: false,
                 status: 200,
@@ -41,26 +43,30 @@ export async function GET(request: NextRequest) {
 
         try {
             // Verify token
-            await jwtVerify(
+            const { payload }: { payload: { accountId: string} } = await jwtVerify(
                 bearerToken,
                 new TextEncoder().encode(process.env["JWT_KEY"])
             )
 
             // Token valid - return all posts
-            const posts = await findPostsAll(skip, take)
-            const totalPosts = await countPostsAll()
-            return Response.json({
-                error: false,
-                status: 200,
-                posts,
-                totalPosts,
-                message: "Retrieved all posts"
-            })
+            if (parseInt(payload["accountId"]) === accountId) {
+                const posts = await findPostsAll(accountId, skip, take)
+                const totalPosts = await countPostsAll(accountId)
+                return Response.json({
+                    error: false,
+                    status: 200,
+                    posts,
+                    totalPosts,
+                    message: "Retrieved all posts"
+                })
+            } else {
+                throw new Error("Access restricted")
+            }
 
         } catch(tokenError) {
             // Invalid token - return public posts
-            const posts = await findPostsShown(skip, take)
-            const totalPosts = await countsPostsShown()
+            const posts = await findPostsShown(accountId, skip, take)
+            const totalPosts = await countsPostsShown(accountId)
             return Response.json({
                 error: false,
                 status: 200,
