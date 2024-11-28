@@ -1,8 +1,15 @@
 import {findAllAccounts} from "../../../../prisma/accountQueries.ts";
+import {headers} from "next/headers";
 
 export async function GET(){
     try {
-        const accounts = await findAllAccounts()
+        const headersList = await headers()
+        const accountId = headersList.get("accountId")
+        if (!accountId) {
+            throw new Error("Missing credentials")
+        }
+
+        const accounts = await findAllAccounts(parseInt(accountId))
         return Response.json({
             error: false,
             status: 200,

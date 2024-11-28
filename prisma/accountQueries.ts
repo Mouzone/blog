@@ -10,11 +10,16 @@ export function createAccount(username: string, password: string) {
     })
 }
 
-export function findAllAccounts() {
+export function findAllAccounts(id: number) {
     return prisma.account.findMany({
         select: {
             id: true,
             username: true,
+        },
+        where: {
+            NOT: {
+                id,
+            }
         }
     })
 }
