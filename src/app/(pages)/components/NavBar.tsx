@@ -1,13 +1,17 @@
+"use client"
+
 import { Disclosure } from '@headlessui/react'
-import React from "react";
+import React, {useContext} from "react";
 import {UserActions} from "@/app/(pages)/components/UserActions.tsx";
 import {StyledLink} from "@/app/(pages)/post/[postId]/components/StyledLink.tsx";
+import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 export default function NavBar() {
+    const {accessToken} = useContext(LoginContext)
     return (
         <Disclosure as="nav" className="bg-gray-800">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-between">
-                    <StyledLink href="/posts" text="Posts"/>
+                    { accessToken ? <StyledLink href="/posts" text="Posts"/> : <StyledLink href="/" text="Home"/> }
                     <UserActions/>
                 </div>
             </div>
