@@ -5,7 +5,7 @@ import {NextRequest} from "next/server";
 
 export async function GET(request: NextRequest) {
     const headersList = await headers()
-    const bearerHeader = headersList.get("authorization") === "Bearer undefined"
+    const bearerHeader = ["Bearer undefined", "Bearer"].includes(headersList.get("authorization"))
         ? null
         : headersList.get("authorization")
 
@@ -29,7 +29,6 @@ export async function GET(request: NextRequest) {
     if (bearerHeader) {
         const bearer = bearerHeader.split(' ')
         const bearerToken = bearer[1]
-
         // Verify token
         const {payload}: { payload: { accountId: string } } = await jwtVerify(
             bearerToken,

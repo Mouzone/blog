@@ -33,6 +33,7 @@ export default function Posts() {
                 })
                 setToDelete("")
             }
+
             const response = await fetch(`/api/posts?accountId=${accountId}&skip=${skip}&take=5`, {
                 headers: {
                     authorization: `Bearer ${accessToken}`
