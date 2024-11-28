@@ -55,7 +55,7 @@ export function countPostsAll(accountId: number) {
     })
 }
 
-export function countsPostsShown(accountId: number) {
+export function countPostsShown(accountId: number) {
     return prisma.post.count({
         where: {
             accountId,
