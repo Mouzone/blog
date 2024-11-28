@@ -26,7 +26,12 @@ export default function Search(){
         <Input type="search" value={searchTerm} update={setSearchTerm}/>
         <div className="absolute bg-white">
             {searchTerm && accounts && filteredAccounts.map(account => {
-                return <Link href={`/account/${account.id}`} className="p-2" key={account.id}>
+                return <Link
+                    key={account.id}
+                    href={`/account/${account.id}`}
+                    className="p-2"
+                    onClick={() => setSearchTerm("")}
+                    >
                     {account.username}
                 </Link>
             })}
