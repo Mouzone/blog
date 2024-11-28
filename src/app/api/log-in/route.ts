@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     try {
-        const accessToken = await getToken({ accountId: account.id})
+        const accessToken = await getToken({ accountId: account.id })
 
         return Response.json({
             error: false,
