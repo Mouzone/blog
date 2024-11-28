@@ -1,6 +1,6 @@
 import {type NextRequest, NextResponse} from "next/server";
 import {headers} from "next/headers";
-import { jwtVerify} from "jose";
+import {type JWTPayload, jwtVerify} from "jose";
 
 export const config = {
     matcher: [
@@ -9,6 +9,10 @@ export const config = {
         '/api/posts/:path*/update',
         '/api/posts/:path*/toggle-shown',
     ]
+}
+
+interface Payload extends JWTPayload {
+    accountId: number
 }
 
 export async function middleware(request: NextRequest) {
@@ -20,7 +24,7 @@ export async function middleware(request: NextRequest) {
         const bearerToken = bearer[1]
 
         try {
-            const { payload } = await jwtVerify(
+            const { payload }: { payload: Payload} = await jwtVerify(
                 bearerToken,
                 new TextEncoder().encode(process.env["JWT_KEY"])
             )
@@ -30,8 +34,8 @@ export async function middleware(request: NextRequest) {
                     headers: new Headers(request.headers)
                 }
             })
-
-            response.headers.set('accountId', payload["accountId"] as string)
+            // payload accountId is an int
+            response.headers.set('accountId', `${payload["accountId"]}`)
             return response
 
         } catch(error) {
