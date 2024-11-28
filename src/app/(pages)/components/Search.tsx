@@ -1,5 +1,6 @@
 import Input from "@/app/(pages)/components/Input.tsx";
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 interface Account {
     id: number,
@@ -25,9 +26,9 @@ export default function Search(){
         <Input type="search" value={searchTerm} update={setSearchTerm}/>
         <div className="absolute bg-white">
             {searchTerm && accounts && filteredAccounts.map(account => {
-                return <div className="p-2" key={account.id}>
+                return <Link href={`/account/${account.id}`} className="p-2" key={account.id}>
                     {account.username}
-                </div>
+                </Link>
             })}
         </div>
     </div>

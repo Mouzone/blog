@@ -1,8 +1,9 @@
 "use client";
 
-import {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Card from "../../components/Card.tsx"
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
+import {useParams} from "next/navigation";
 
 interface Post {
     id: string,
@@ -13,6 +14,8 @@ interface Post {
 }
 
 export default function Posts() {
+    const params = useParams()
+    const accountId = params["accountId"] === "own" ? "" : params["accountId"]
     const [posts, setPosts] = useState<Post[]>([])
     const [totalPosts, setTotalPosts] = useState(0)
     const [toDelete, setToDelete] = useState("")
@@ -30,7 +33,7 @@ export default function Posts() {
                 })
                 setToDelete("")
             }
-            const response = await fetch(`/api/posts?skip=${skip}&take=5`, {
+            const response = await fetch(`/api/posts?accountId=${accountId}&skip=${skip}&take=5`, {
                 headers: {
                     authorization: `Bearer ${accessToken}`
                 }
