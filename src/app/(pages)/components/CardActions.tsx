@@ -1,14 +1,12 @@
 "use client"
 import Cookies from "js-cookie";
-import {useContext, useEffect, useState} from "react";
-import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
+import React, {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 
 export default function CardActions({id, isShown, setToDeleteAction}: {id: string, isShown: boolean, setToDeleteAction: React.Dispatch<React.SetStateAction<string>>}) {
     const router = useRouter()
     const [isClient, setIsClient] = useState(false);
     const [eyeOpen, setEyeOpen] = useState(isShown)
-    const { accessToken } = useContext(LoginContext)
 
     useEffect(() => {
         setIsClient(true)
@@ -41,8 +39,7 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
         setEyeOpen(!eyeOpen)
     }
 
-    return accessToken
-        ? <div className="flex flex-col justify-center">
+    return <div className="flex flex-col justify-center">
             <button
                 onClick={() => router.push(`/post-form/?postId=${id}`)}
             >
@@ -78,5 +75,4 @@ export default function CardActions({id, isShown, setToDeleteAction}: {id: strin
                 </svg>
             </button>
         </div>
-        : <div></div>
 }

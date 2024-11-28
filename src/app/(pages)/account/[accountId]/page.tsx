@@ -69,6 +69,7 @@ export default function Posts() {
                             description={description}
                             createdAt={createdAt}
                             isShown={isShown}
+                            showActions={accountId === ""}
                             setToDelete = {setToDelete}
                         />
                     ))}

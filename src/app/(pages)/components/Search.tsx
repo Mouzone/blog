@@ -1,6 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Link from "next/link";
-import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 
 interface Account {
     id: number,
@@ -10,7 +9,6 @@ interface Account {
 export default function Search(){
     const [searchTerm, setSearchTerm] = useState("")
     const [accounts, setAccounts] = useState<Account[]>([])
-    const {accessToken} = useContext(LoginContext)
     useEffect(() => {
         async function fetchAccounts() {
             const response = await fetch('/api/accounts')
@@ -20,7 +18,7 @@ export default function Search(){
         }
 
         fetchAccounts()
-    }, [accessToken])
+    }, [])
 
 
     const filteredAccounts = accounts

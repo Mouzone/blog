@@ -5,7 +5,6 @@ import {type JWTPayload, jwtVerify} from "jose";
 export const config = {
     matcher: [
         '/api/posts/create',
-        `/api/accounts`,
         '/api/posts/:path*/delete',
         '/api/posts/:path*/update',
         '/api/posts/:path*/toggle-shown',

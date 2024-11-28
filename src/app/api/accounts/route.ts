@@ -3,6 +3,7 @@ import {findAllAccounts} from "../../../../prisma/accountQueries.ts";
 export async function GET(){
     try {
         const accounts = await findAllAccounts()
+        console.log(accounts)
         return Response.json({
             error: false,
             status: 200,

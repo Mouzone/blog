@@ -7,6 +7,7 @@ export default function Card({
                          title,
                          description,
                          createdAt,
+    showActions,
                          isShown,
     setToDelete,
                      }: {
@@ -14,6 +15,7 @@ export default function Card({
     title: string,
     description: string,
     createdAt: string,
+    showActions: boolean
     isShown: boolean,
     setToDelete: React.Dispatch<React.SetStateAction<string>>
 }) {
@@ -41,7 +43,10 @@ export default function Card({
                     <p className="line-clamp-3 text-sm/6 text-gray-600">{description}</p>
                 </div>
             </article>
-            <CardActions id={id} isShown={isShown} setToDeleteAction={setToDelete}/>
+            { showActions
+                ? <CardActions id={id} isShown={isShown} setToDeleteAction={setToDelete}/>
+                : <div></div>
+            }
         </div>
     )
 }
