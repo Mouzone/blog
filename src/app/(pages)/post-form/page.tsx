@@ -19,7 +19,7 @@ export default function PostForm() {
 
     useEffect(() => {
         if (!accessToken) {
-            router.push("/")
+            router.push("/account/own")
         }
 
         async function fetchPost() {
@@ -58,7 +58,7 @@ export default function PostForm() {
             if (data["error"]) {
                 throw new Error("Error creating new point")
             }
-            router.push("/")
+            router.push("/account/own")
         } catch(error) {
             console.error("Error sending request", error)
         }
