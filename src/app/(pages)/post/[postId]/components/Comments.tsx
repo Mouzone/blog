@@ -24,7 +24,7 @@ export default function Comments({postId}: { postId: string }) {
         }
 
         fetchComments()
-    }, [comments])
+    }, [comments, postId, skip])
 
 
     return (

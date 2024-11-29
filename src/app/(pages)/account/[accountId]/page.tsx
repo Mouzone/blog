@@ -50,7 +50,7 @@ export default function Posts() {
         }
 
         fetchPosts()
-    }, [skip, toDelete])
+    }, [accessToken, accountId, skip, toDelete])
 
 
     return (
