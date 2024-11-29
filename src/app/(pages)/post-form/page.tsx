@@ -11,7 +11,7 @@ export default function FormPage() {
         <PostForm/>
     </Suspense>
 }
-export function PostForm() {
+function PostForm() {
     const { accessToken } = useContext(LoginContext)
 
     const router = useRouter()
