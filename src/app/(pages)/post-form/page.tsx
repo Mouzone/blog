@@ -6,7 +6,12 @@ import Cookies from "js-cookie";
 import Inputs from "@/app/(pages)/post-form/components/Inputs.tsx";
 import PostButtons from "@/app/(pages)/post-form/components/PostButtons.tsx";
 
-export default function PostForm() {
+export default function FormPage() {
+    return <Suspense>
+        <PostForm/>
+    </Suspense>
+}
+export function PostForm() {
     const { accessToken } = useContext(LoginContext)
 
     const router = useRouter()
