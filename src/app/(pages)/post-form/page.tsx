@@ -1,5 +1,5 @@
 "use client"
-import React, {type FormEvent, useContext, useEffect, useState} from "react";
+import React, {type FormEvent, Suspense, useContext, useEffect, useState} from "react";
 import {LoginContext} from "@/app/(pages)/components/LoginContextProvider.tsx";
 import {useRouter, useSearchParams} from "next/navigation";
 import Cookies from "js-cookie";
@@ -66,11 +66,13 @@ export default function PostForm() {
 
     return (
         <form onSubmit={onSubmit} className="mx-12">
-            <Inputs
-                title={title} setTitle={setTitle}
-                description={description} setDescription={setDescription}
-                content={content} setContent={setContent}
-            />
+            <Suspense>
+                <Inputs
+                    title={title} setTitle={setTitle}
+                    description={description} setDescription={setDescription}
+                    content={content} setContent={setContent}
+                />
+            </Suspense>
 
             <PostButtons text={postId ? "Update": "Submit"}/>
         </form>
