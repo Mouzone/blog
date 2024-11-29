@@ -1,3 +1,9 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,25 +18,29 @@ model Account {
   id       Int    @id @default(autoincrement())
   username String @unique
   password String
-  Posts    Post[]
+
+  Posts Post[]
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  content     String
-  createdAt   DateTime  @default(now())
-  isShown     Boolean   @default(true)
+  id    Int    @id @default(autoincrement())
+  title String
+
   description String
-  accountId   Int
-  comments    Comment[]
-  Account     Account   @relation(fields: [accountId], references: [id])
+  content     String
+  createdAt   DateTime @default(now())
+  isShown     Boolean  @default(true)
+
+  Account   Account   @relation(fields: [accountId], references: [id])
+  accountId Int
+  comments  Comment[]
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
   content   String
   createdAt DateTime @default(now())
-  postId    Int
-  Post      Post     @relation(fields: [postId], references: [id])
+
+  Post   Post @relation(fields: [postId], references: [id])
+  postId Int
 }
