@@ -65,16 +65,16 @@ export default function PostForm() {
     }
 
     return (
-        <form onSubmit={onSubmit} className="mx-12">
-            <Suspense>
-                <Inputs
-                    title={title} setTitle={setTitle}
-                    description={description} setDescription={setDescription}
-                    content={content} setContent={setContent}
-                />
-            </Suspense>
+        <Suspense>
+            <form onSubmit={onSubmit} className="mx-12">
+                    <Inputs
+                        title={title} setTitle={setTitle}
+                        description={description} setDescription={setDescription}
+                        content={content} setContent={setContent}
+                    />
 
-            <PostButtons text={postId ? "Update": "Submit"}/>
-        </form>
+                <PostButtons text={postId ? "Update": "Submit"}/>
+            </form>
+    </Suspense>
     )
 }
