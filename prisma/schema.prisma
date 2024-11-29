@@ -1,45 +1,36 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Account {
   id       Int    @id @default(autoincrement())
   username String @unique
   password String
-
-  Posts Post[]
+  Posts    Post[]
 }
 
 model Post {
-  id    Int    @id @default(autoincrement())
-  title String
-
-  description String
+  id          Int       @id @default(autoincrement())
+  title       String
   content     String
-  createdAt   DateTime @default(now())
-  isShown     Boolean  @default(true)
-
-  Account   Account   @relation(fields: [accountId], references: [id])
-  accountId Int
-  comments  Comment[]
+  createdAt   DateTime  @default(now())
+  isShown     Boolean   @default(true)
+  description String
+  accountId   Int
+  comments    Comment[]
+  Account     Account   @relation(fields: [accountId], references: [id])
 }
 
 model Comment {
   id        Int      @id @default(autoincrement())
   content   String
   createdAt DateTime @default(now())
-
-  Post   Post @relation(fields: [postId], references: [id])
-  postId Int
+  postId    Int
+  Post      Post     @relation(fields: [postId], references: [id])
 }
