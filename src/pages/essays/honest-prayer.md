@@ -4,7 +4,7 @@ pubDate: 2025-01-30
 verses: [
     "Isaiah 38:3",
 ]
-tags: ["prayer", "Hezekiah", "Isaiah 38"]
+tags: ["prayer", "Hezekiah", "Isaiah"]
 ---
 **Honest Prayer**
 
