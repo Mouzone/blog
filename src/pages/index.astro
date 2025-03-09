@@ -11,7 +11,7 @@ const essays = await getCollection("essays")
     </h1>
     {
         essays.map(essay => (
-            <li><a href={`/blog/${essay.id}`}>{essay.data.title}</a></li>
+            <li><a href={`/essays/${essay.id}`}>{essay.data.title}</a></li>
         ))
     }
 </Boilerplate>
