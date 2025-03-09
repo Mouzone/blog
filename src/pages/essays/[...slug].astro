@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-
+import Markdown from "../../layouts/Markdown.astro";
 export async function getStaticPaths() {
     const essays = await getCollection("essays");
     return essays.map(essay => ({
@@ -11,4 +11,6 @@ export async function getStaticPaths() {
 const {essay} = Astro.props;
 const { Content } = await render(essay);
 ---
-<Content/>
+<Markdown frontmatter={essay.data}>
+    <Content/>
+</Markdown>
