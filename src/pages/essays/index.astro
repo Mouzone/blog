@@ -2,12 +2,15 @@
 import { getCollection } from "astro:content";
 import Boilerplate from "../../layouts/Boilerplate.astro";
 
-const essays = await getCollection("essays")
+const essays = await getCollection("essays");
 ---
+
 <Boilerplate>
     {
-        essays.map(essay => (
-            <li><a href={`/essays/${essay.id}`}>{essay.data.title}</a></li>
+        essays.map((essay) => (
+            <li>
+                <a href={`/essays/${essay.id}`}>{essay.data.title}</a>
+            </li>
         ))
     }
 </Boilerplate>
