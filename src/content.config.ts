@@ -6,7 +6,6 @@ const essays = defineCollection({
     schema: z.object({
         title: z.string(),
         pubDate: z.date(),
-        img: z.string(),
         blurb: z.string(),
         verses: z.array(z.string()),
         tags: z.array(z.string()),
