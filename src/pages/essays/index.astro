@@ -1,16 +1,30 @@
 ---
 import { getCollection } from "astro:content";
 import Boilerplate from "../../layouts/Boilerplate.astro";
-
 const essays = await getCollection("essays");
 ---
 
 <Boilerplate>
     {
         essays.map((essay) => (
-            <li>
-                <a href={`/essays/${essay.id}`}>{essay.data.title}</a>
-            </li>
+            <a href={`/essays/${essay.id}`} class="card bg-base-100 w-96 shadow-sm">
+                <figure>
+                    <img
+                    src={essay.data.img}
+                    alt="TBD" />
+                </figure>
+                <div class="card-body">
+                    <h2 class="card-title">
+                        {essay.data.title}
+                        <div class="badge badge-secondary">NEW</div>
+                    </h2>
+                    <p>{essay.data.blurb}</p>
+                    <div class="card-actions justify-end">
+                    <div class="badge badge-outline">Fashion</div>
+                    <div class="badge badge-outline">Products</div>
+                    </div>
+                </div>
+            </a>
         ))
     }
 </Boilerplate>

@@ -1,6 +1,8 @@
 ---
-title: "Honest Prayer"
+title: Honest Prayer
 pubDate: 2025-01-30
+img: ../src/images/prayer hands.jpg
+blurb: Reflection on the heart of prayer 
 verses: [
     "Isaiah 38:3",
 ]
