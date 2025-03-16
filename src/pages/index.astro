@@ -1,17 +1,7 @@
 ---
 import Boilerplate from "../layouts/Boilerplate.astro";
-import { getCollection } from "astro:content";
-
-const essays = await getCollection("essays")
 ---
 
 <Boilerplate>
-    <h1 class="text-3xl font-bold underline">
-        Hello World!
-    </h1>
-    {
-        essays.map(essay => (
-            <li><a href={`/essays/${essay.id}`}>{essay.data.title}</a></li>
-        ))
-    }
+    
 </Boilerplate>
