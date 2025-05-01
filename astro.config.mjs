@@ -7,7 +7,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog-five-mu-59.vercel.app/blog/honest-prayer',
+  site: 'https://blog-five-mu-59.vercel.app/blog/',
   integrations: [mdx(), svelte()],
   markdown: {
     shikiConfig: {
