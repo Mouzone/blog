@@ -1,7 +1,7 @@
 ---
 title: Honest Prayer
 slug: honest-prayer
-description: Remembering the root of prayer
+description: Remembering the root of prayer.
 publishDate: 30 Jan 2025
 ---
 Recently I was asking a sister of the church for her prayer request. Her request was for the health, safety, and faith of her loved ones along with discernment and wisdom for herself. I was shocked by this prayer request. This sister has served in her four years of undergraduate school as a bible study leader, and is committed to the utmost to serving God’s kingdom. In contrast, the words were so blindingly simple and almost materialistic. How many times have I heard discernment and wisdom over my years? What a worldly view to bring to a deity asking for health and safety. You ask to be closer to God, but you bring nothing actionable. It was tantamount to praying to God for a million dollars. I was immediately critical and almost exhorted her to dream bigger and pray for bigger things. That was when the realization took me. When did I start taking health, safety, love of God, wisdom discernment, and nearness to God for granted? When did prayer become a mental exercise of following proper theology? 
