@@ -1,9 +1,10 @@
 ---
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
+
 ---
 
 <a href="/">
-  <Image alt="Blog Logo" src="/assets/logo.png" width="75" height="50" loading="eager"/>
+  <Image alt="Blog Logo" src="/assets/logo.png" width="75" height="50" format="png" />
 </a>
 
 <style>
