@@ -4,8 +4,48 @@ slug: honest-prayer
 description: Remembering the root of prayer.
 publishDate: 30 Jan 2025
 ---
-Recently I was asking a sister of the church for her prayer request. Her request was for the health, safety, and faith of her loved ones along with discernment and wisdom for herself. I was shocked by this prayer request. This sister has served in her four years of undergraduate school as a bible study leader, and is committed to the utmost to serving God’s kingdom. In contrast, the words were so blindingly simple and almost materialistic. How many times have I heard discernment and wisdom over my years? What a worldly view to bring to a deity asking for health and safety. You ask to be closer to God, but you bring nothing actionable. It was tantamount to praying to God for a million dollars. I was immediately critical and almost exhorted her to dream bigger and pray for bigger things. That was when the realization took me. When did I start taking health, safety, love of God, wisdom discernment, and nearness to God for granted? When did prayer become a mental exercise of following proper theology? 
+Recently, I was asking a sister from church for her prayer request. Her request was for the health, safety, and faith of her loved ones, along with discernment and wisdom for herself. I was shocked by this prayer request.
 
-A prayer is meant to be raw. It is a representation of a person’s desires. It is laid before God and in humility we beg God out of His grace and mercy to grant us this desire. We see in Isaiah 38 that Hezekiah begs for life. In his sickness, he turns to the Most High for he knows no one else can save him, after all God sent His prophet to diagnose him personally. However, despite it being God’s will for Hezekiah to perish, Hezekiah wails and prays to the Lord. His prayer is elementary and childish. It is a petty tantrum. We see it fully in one simple verse: “and said, “Please, O Lord, remember how I have walked before you in faithfulness and with a whole heart, and have done what is good in your sight.” And Hezekiah wept bitterly.” (Isaiah 38: 3) Surprisingly God answers, not because he forgot Hezekiah’s works and was reminded, but because we see that Hezekiah in the depths of his misery he turned to God. God was most certainly pleased and answered it despite Hezekiah pointing to his works. After all we are saved by faith and not work. Hezekiah’s works weren’t what we should take away, but Hezekiah’s faith in God, knowing fully that God can heal him, and wanting His precedence immediately to heal him. Hezekiah threw all his cares to the wind, and went straight to what matters. Jesus Himself said he knew our hearts. So let us not lie and beautify our prayers, if we cannot communicate fully our heart to God. Let us bring all our desires from every nook and cranny of our heart, to be answered or be admonished by God. Either way, bringing us closer to God. 
+This sister had served all four years of her undergraduate studies as a Bible study leader and is wholeheartedly committed to serving God’s kingdom. In contrast, her words seemed blindingly simple—almost materialistic. How many times have I heard the words _discernment_ and _wisdom_ over the years? What a worldly view, I thought, to bring to a deity—asking for health and safety. You say you want to be closer to God, but you bring nothing actionable. It felt tantamount to praying for a million dollars.
 
-Do not let us deny ourselves the joy of turning to the Father who is attentively listening, by trying to conform to what we think He wants to hear. Instead let us pray from the hearts He gave us alongside the desires He wants us to bring forth to Him to be surrendered and crucified. So let us pray, not necessarily with words that Hezekiah prayed, but with the heart Hezekiah prayed. A desperate heart. A submissive heart. A heart of faith. All these are things that the Lord takes great delight in. Let us be raw. Let us be shameless and grow in our relationship with God understanding his Heart more and more by prayers answered and unanswered. At the end of the day a pastor once said: “God loves us so much, He wants to be the first to hear of the good things in our lives, the bad things of our lives, and everything in between. He just wants to be a part of our lives.” So let us be honest in our prayers, trusting fully that He has no malice in how He answers. He desires our best and loves us unconditionally. So pray however you want to pray. With whatever words you want to use, but talk to God knowing that He is listening intently and waiting for you to really say what’s on your mind.
+I was immediately critical and almost exhorted her to dream bigger, to pray for bigger things.
+
+That was when the realization struck me.
+
+When did I start taking health, safety, love of God, wisdom, discernment, and nearness to God for granted?  
+
+When did prayer become a mental exercise in following proper theology?
+
+A prayer is meant to be raw. It represents a person’s desires—laid before God in humility, begging for His grace and mercy. We see this in **Isaiah 38**, when Hezekiah begs for life. In his sickness, he turns to the Most High, knowing no one else can save him. After all, God had sent His own prophet to personally deliver the diagnosis. Yet despite it being God’s will that Hezekiah perish, Hezekiah weeps and prays to the Lord. His prayer is elementary and even childish—almost a petty tantrum. It’s captured in one simple verse:
+
+> “Please, O Lord, remember how I have walked before you in faithfulness and with a whole heart, and have done what is good in your sight.”  
+> And Hezekiah wept bitterly.  
+> — **Isaiah 38:3 ESV**
+
+Surprisingly, God answers—not because He forgot Hezekiah’s works and needed reminding—but because Hezekiah, in the depths of his misery, turned to God. God was pleased with that. He answered, not because of the works cited, but because of Hezekiah’s faith.
+
+Hezekiah’s _works_ aren’t what we should focus on. What we should take away is his _faith_—his belief that God could heal him, his longing for God’s presence. Hezekiah cast all his dignity aside and went straight to what mattered. Jesus Himself said He knows our hearts.
+
+So let us not lie or beautify our prayers if we cannot fully communicate our hearts to God.  
+
+Let us bring every desire from every nook and cranny of our hearts—so that God may answer or admonish us. Either way, we draw nearer to Him.
+
+Let us not deny ourselves the joy of turning to the Father, who listens attentively, by trying to conform to what we think He wants to hear. Instead, let us pray with the hearts He gave us, bringing forth desires that He wants us to surrender and crucify.
+
+So let us pray—not necessarily with the words that Hezekiah prayed, but with the _heart_ that Hezekiah prayed.  
+A desperate heart.  
+A submissive heart.  
+A heart of faith.  
+These are things the Lord delights in.
+
+Let us be raw. Let us be shameless. Let us grow in our relationship with God—understanding His heart more and more through both answered and unanswered prayers.
+
+At the end of the day, a pastor once said:
+
+> “God loves us so much, He wants to be the first to hear of the good things in our lives, the bad things in our lives, and everything in between. He just wants to be a part of our lives.”
+
+So let us be honest in our prayers, trusting fully that He holds no malice in how He answers.  
+
+He desires our best and loves us unconditionally.
+
+So pray however you want to pray—with whatever words you want to use—but talk to God, knowing He is listening intently and waiting for you to really say what’s on your heart.
