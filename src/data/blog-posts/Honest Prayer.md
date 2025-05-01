@@ -18,8 +18,7 @@ When did prayer become a mental exercise in following proper theology?
 
 A prayer is meant to be raw. It represents a person’s desires—laid before God in humility, begging for His grace and mercy. We see this in **Isaiah 38**, when Hezekiah begs for life. In his sickness, he turns to the Most High, knowing no one else can save him. After all, God had sent His own prophet to personally deliver the diagnosis. Yet despite it being God’s will that Hezekiah perish, Hezekiah weeps and prays to the Lord. His prayer is elementary and even childish—almost a petty tantrum. It’s captured in one simple verse:
 
-> “Please, O Lord, remember how I have walked before you in faithfulness and with a whole heart, and have done what is good in your sight.”  
-> And Hezekiah wept bitterly.  
+> “Please, O Lord, remember how I have walked before you in faithfulness and with a whole heart, and have done what is good in your sight.” And Hezekiah wept bitterly.  
 > — **Isaiah 38:3 ESV**
 
 Surprisingly, God answers—not because He forgot Hezekiah’s works and needed reminding—but because Hezekiah, in the depths of his misery, turned to God. God was pleased with that. He answered, not because of the works cited, but because of Hezekiah’s faith.
