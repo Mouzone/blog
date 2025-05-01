@@ -1,12 +1,18 @@
 ---
-import { getCollection } from 'astro:content'
+import type { MarkdownInstance } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+interface Frontmatter {
+    title: string;
+    publishDate: string;
+    source: string;
+}
 
 const title = 'Quotes';
 const description = 'Latest quotes.';
 const permalink = `${Astro.site.href}quotes`;
 
-const quoteFiles = import.meta.glob('../../data/quotes/*.md', { eager: true });
+
+const quoteFiles = import.meta.glob<MarkdownInstance<Frontmatter>>('../../data/quotes/*.md', { eager: true });
 const quotes = Object.values(quoteFiles);
 ---
 
@@ -17,10 +23,10 @@ const quotes = Object.values(quoteFiles);
         <article class="prose max-w-none">
             <h2>{quote.frontmatter.title}</h2>
             <p class="quote-item-date">{quote.frontmatter.publishDate}</p>
-          <quote.default />
-          <footer class="quote-item-footer">— {quote.frontmatter.source}</footer>
+            <quote.default />
+            <footer class="quote-item-footer">— {quote.frontmatter.source}</footer>
         </article>
-              <hr/>
+        <hr/>
       ))}
   </div>
 </BaseLayout>
