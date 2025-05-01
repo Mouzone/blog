@@ -1,6 +1,5 @@
 ---
 title: On Nothing To Lose
-slug: on-nothing-to-lose
 publishDate: 1 May 2025
 source: St. John Chrysostom
 ---

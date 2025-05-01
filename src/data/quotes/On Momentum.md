@@ -1,6 +1,5 @@
 ---
 title: On Momentum
-slug: on-momentum
 publishDate: 1 May 2025
 source: Umeda Cypher
 ---
