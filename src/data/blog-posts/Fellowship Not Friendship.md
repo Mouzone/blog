@@ -1,6 +1,6 @@
 ---
 title: Fellowship Not Friendship
-slug: friendship-not-friendship
+slug: fellowship-not-friendship
 description: Pursuing a higher standard of community
 publishDate: 1 May 2025
 ---
