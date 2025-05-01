@@ -22,7 +22,6 @@ const quotes = Object.values(quoteFiles);
     {quotes.map((quote, i) => (
         <article class="prose max-w-none">
             <h2>{quote.frontmatter.title}</h2>
-            <p class="quote-item-date">{quote.frontmatter.publishDate}</p>
             <quote.default />
             <footer class="quote-item-footer">— {quote.frontmatter.source}</footer>
         </article>
