@@ -11,13 +11,4 @@ const posts = defineCollection({
 	}),
 });
 
-const quotes = defineCollection({
-	loader: glob({ pattern: "*.md", base: "./src/data/quotes" }),
-	schema: z.object({
-		title: z.string(),
-		slug: z.string(),
-		publishDate: z.union([z.string(), z.date()]),
-	}),
-});
-
 export const collections = { posts, quotes };

@@ -2,45 +2,37 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'Blog';
-const description = 'Latest articles.';
-const permalink = `${Astro.site.href}blog`;
+const title = 'Quotes';
+const description = 'Latest quotes.';
+const permalink = `${Astro.site.href}quotes`;
 
-let allPosts = await getCollection('posts')
-allPosts = allPosts.sort((a, b) => new Date(b.data.publishDate).valueOf() - new Date(a.data.publishDate).valueOf());
+const quoteFiles = import.meta.glob('../../data/quotes/*.md', { eager: true });
+const quotes = Object.values(quoteFiles);
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="blog">
+<BaseLayout title={title} description={description} permalink={permalink} current="quotes">
   <div class="container">
-    <h1>Blog</h1>
-    {allPosts.map((post, index) => {
-      const href = `/blog/${post.data.slug}`;
-      return (
-        <div>
-          { index !== 0 && <hr /> }
-          <div class="post-item">
-            <h2>
-              <a href={href}>{post.data.title}</a>
-            </h2>
-            <p>{post.data.description}</p>
-            <div class="post-item-footer">
-              <span class="post-item-date">— {post.data.publishDate}</span>
-            </div>
-          </div>
-        </div>
-      )
-    })}
+    <h1>Quotes</h1>
+    {quotes.map((quote, i) => (
+        <article class="prose max-w-none">
+            <h2>{quote.frontmatter.title}</h2>
+            <p class="quote-item-date">{quote.frontmatter.publishDate}</p>
+          <quote.default />
+          <footer class="quote-item-footer">— {quote.frontmatter.source}</footer>
+        </article>
+              <hr/>
+      ))}
   </div>
 </BaseLayout>
 
 <style>
   h2,
-  .post-item-footer {
+  .quote-item-footer {
     font-family: var(--font-family-sans);
     font-weight: 700;
   }
 
-  .post-item-date {
+  .quote-item-date {
     color: var(--text-secondary);
     text-align: left;
     text-transform: uppercase;
