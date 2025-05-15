@@ -1,6 +1,6 @@
 {
-  "bibleVersion": "bbe",
-  "defaultBibleVersion": "bbe",
+  "bibleVersion": "niv",
+  "defaultBibleVersion": "niv",
   "referenceLinkPosition": "Bottom",
   "verseFormatting": "Paragraph",
   "verseNumberFormatting": "**^1**",
