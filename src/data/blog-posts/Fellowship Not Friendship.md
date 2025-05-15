@@ -13,6 +13,7 @@ Identifying whether someone believes can be a tricky task. However, identifying 
 > <sup>42</sup>They devoted themselves to the apostles’ teaching and to fellowship, to the breaking of bread and to prayer. <sup>43</sup>Everyone was filled with awe at the many wonders and signs performed by the apostles. <sup>44</sup>All the believers were together and had everything in common. <sup>45</sup>They sold property and possessions to give to anyone who had need.  <sup>46</sup>Every day they continued to meet together in the temple courts. They broke bread in their homes and ate together with glad and sincere hearts, <sup>47</sup>praising God and enjoying the favor of all the people. And the Lord added to their number daily those who were being saved.  
 > —**Acts 2:42–47 (NIV)**
 
+
 Reading this, we must look at the gathering as a whole. The characteristics of God-centered fellowship include a **pursuit of holiness**. They served together and were united in their care for the poor and needy. They met regularly and lived their lives in community. Most importantly—more than just being glad and sincere—they **praised God**.
 
 So it is foolish to call a gathering of lukewarm believers _fellowship_ when this was the standard set by the original apostles. We can call it a _hangout_, but fellowship implies a different standard—one that the world has scarcely seen.
