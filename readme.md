@@ -1,7 +1,7 @@
 # Personal Blog
 
 ## About This Project
-This project is a personal blog focused on [Your Name/Blog's Focus Area]. It features articles on [Topic 1], [Topic 2], and [Topic 3], as well as occasional thoughts and reflections.
+This project is a personal blog. It features articles, as well as occasional thoughts and reflections.
 
 ## Technology Stack
 - **Astro** (^5.5.2): Main framework for building the static site.
@@ -16,8 +16,8 @@ This project is a personal blog focused on [Your Name/Blog's Focus Area]. It fea
 ## Usage/Development
 
 ### Prerequisites
-- Node.js (version X.X.X or later recommended - *User to specify exact version if known, otherwise use this placeholder*)
-- npm (comes with Node.js)
+- Node.js 
+- npm
 
 ### Setup
 1. Clone the repository:
