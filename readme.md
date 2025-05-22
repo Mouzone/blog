@@ -66,26 +66,6 @@ Common deployment platforms for Astro projects include:
 
 For platform-specific instructions, please refer to the Astro documentation on deployment: https://docs.astro.build/en/guides/deploy/
 
-*(Please replace this paragraph with specific details about your deployment setup if you have one.)*
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for improvements, please follow these steps:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeatureName`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature/YourFeatureName`).
-6. Open a Pull Request.
-
-Please ensure your code adheres to any existing style guidelines and include tests if applicable.
-
-If you find a bug, please open an issue in the repository.
-
-## License
-
-This project is licensed under the terms of the LICENSE file. Please see the `LICENSE` file in the root of the project for more details.
-
 ## Todo:
 - add searching with tags
 - update font
